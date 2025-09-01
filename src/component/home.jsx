@@ -11,7 +11,7 @@ export default function Home() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
         <motion.div
-          className="text-center md:text-left"
+          className="text-center md:text-left" 
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
