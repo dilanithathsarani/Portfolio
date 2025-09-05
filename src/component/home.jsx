@@ -56,7 +56,7 @@ export default function Home() {
                   <motion.img
                     src={profileImg}
                     alt="Dilani Profile"
-                    className="w-90 h-90 md:w-90 md:h-90 object-cover rounded-full border-4 border-[#3A9188] shadow-[0_0_80px_#3A9188]"
+                    className="w-90 h-90 md:w-100 md:h-100 object-cover rounded-full border-4 border-[#3A9188] shadow-[0_0_80px_#3A9188]"
                     animate={{ y: [0, -12, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   />
