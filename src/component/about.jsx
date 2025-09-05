@@ -49,7 +49,7 @@ export default function About() {
           {[
             `I'm Dilani Thathsarani, an undergraduate at Sabaragamuwa University of Sri Lanka. I’m passionate about Web Development, Mobile Apps, and becoming a QA Engineer in the future.`,
             `I completed my education at G/Anula Devi Balika Vidyalaya, Galle, where I did my O/Ls and A/Ls in the Physical Science stream.`,
-            `With skills in React, MySQL, Java, and Express.js, I enjoy building projects like a E-Business. I'm constantly learning, improving, and excited to explore new tech.`,
+            `With skills in React, MySQL, Java, and Express.js, I enjoy building projects like  E-Business platforms. I'm constantly learning, improving, and excited to explore new tech.`,
           ].map((text, index) => (
             <motion.p
               key={index}
