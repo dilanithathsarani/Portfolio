@@ -36,7 +36,8 @@ export default function About() {
     },
     {
       degree: "Certificate In Information Technology",
-      institution: "Nenapiyasa Rural Education Development & Vocational Training Institute, Galle",
+      institution:
+        "Nenapiyasa Rural Education Development & Vocational Training Institute, Galle",
       year: "",
       time: "2020 Jan - 2020 Sep",
       icon: <FaSchool className="text-white text-2xl" />,
@@ -46,13 +47,11 @@ export default function About() {
 
   return (
     <>
-      {/* About Section */}
       <section
         id="about"
         className="min-h-screen flex items-center justify-center bg-[#044A42] px-4 py-20"
       >
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Profile Image */}
           <motion.div
             className="flex justify-center relative"
             initial={{ opacity: 0, scale: 0.6, y: 50 }}
@@ -74,7 +73,6 @@ export default function About() {
             />
           </motion.div>
 
-          {/* About Paragraph */}
           <motion.div
             className="text-center md:text-left"
             initial={{ opacity: 0, x: 50 }}
@@ -133,74 +131,68 @@ export default function About() {
       </section>
 
       <section
-  id="education"
-  className="min-h-screen flex flex-col items-center justify-center bg-[#044A42] px-4 py-16 -mt-20 pb-15 overflow-x-hidden"
->
-  <div className="w-full max-w-6xl mx-auto relative">
-    {/* Education Title */}
-    <motion.h2
-      className="text-3xl sm:text-4xl font-bold mb-10 text-[#B8E1DD] text-center"
-      initial={{ opacity: 0, y: -20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      Education
-    </motion.h2>
-
-{/* Vertical Timeline Line */}
-<div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 top-10 
-                h-full w-1 bg-gradient-to-b from-[#3A9188]/80 via-[#B8E1DD]/40 
-                to-[#3A9188]/80 rounded shadow-lg"></div>
-
-
-    {/* Timeline Cards */}
-    <div className="flex flex-col space-y-8 md:space-y-12">
-      {educationData.map((edu, index) => (
-        <motion.div
-          key={index}
-          className={`flex flex-col md:flex-row items-start relative w-full ${
-            index % 2 === 0 ? "md:justify-start" : "md:justify-end"
-          }`}
-          initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: index * 0.2 }}
-        >
-          {/* Icon */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex flex-col items-center z-10 hidden md:flex">
-            <div className="bg-gradient-to-r from-[#3A9188] via-[#B8E1DD] to-[#3A9188] md:mr-5 p-3 sm:p-4 rounded-full shadow-lg hover:shadow-2xl transition-transform hover:scale-110">
-              {edu.icon}
-            </div>
-            {index !== educationData.length - 1 && (
-              <div className="h-10 md:h-full w-1 bg-gradient-to-b from-[#3A9188]/40 via-[#B8E1DD]/20 to-[#3A9188]/40 mt-1 md:mt-2 rounded"></div>
-            )}
-          </div>
-
-          {/* Card */}
-          <motion.div
-            className={`bg-gradient-to-r from-[#3A9188]/30 via-[#B8E1DD]/20 to-[#3A9188]/30 p-5 md:p-6 rounded-2xl shadow-xl border border-[#B8E1DD]/20 w-full max-w-md hover:scale-105 transition-transform ${
-              index % 2 === 0 ? "md:ml-1 text-left" :
-               "md:mr-5 text-left"
-            }`}
+        id="education"
+        className="min-h-screen flex flex-col items-center justify-center bg-[#044A42] px-4 py-16 -mt-20 pb-15 overflow-x-hidden"
+      >
+        <div className="w-full max-w-6xl mx-auto relative">
+          <motion.h2
+            className="text-3xl sm:text-4xl font-bold mb-10 text-[#B8E1DD] text-center"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#B8E1DD]">{edu.degree}</h3>
-            <p className="text-[#B8E1DD] mt-1 text-sm sm:text-base md:text-lg">{edu.institution}</p>
-            {edu.achievement && (
-              <span className="text-[#B8E1DD]/80 mt-2 block font-medium text-sm sm:text-base md:text-base">
-                {edu.achievement}
-              </span>
-            )}
-            <div className="mt-2 flex justify-between md:flex-row-reverse text-xs sm:text-sm md:text-sm text-[#B8E1DD]/60">
-              <span>{edu.year}</span>
-              <span>{edu.time}</span>
-            </div>
-          </motion.div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
+            Education
+          </motion.h2>
 
+          <div
+            className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 top-10 h-full w-1 bg-gradient-to-b from-[#3A9188]/80 via-[#B8E1DD]/40 to-[#3A9188]/80 rounded"></div>
 
+          <div className="flex flex-col space-y-8 md:space-y-12">
+            {educationData.map((edu, index) => (
+              <motion.div
+                key={index}
+                className={`flex flex-col md:flex-row items-start relative w-full ${
+                  index % 2 === 0 ? "md:justify-start" : "md:justify-end"
+                }`}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+              >
+                <div className="absolute left-1/2 transform -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex flex-col items-center z-10 hidden md:flex">
+                  <div className="bg-gradient-to-r from-[#3A9188] via-[#B8E1DD] to-[#3A9188] md:mr-5 p-3 sm:p-4 rounded-full shadow-lg hover:shadow-2xl transition-transform hover:scale-110">
+                    {edu.icon}
+                  </div>
+                  {index !== educationData.length - 1 && (
+                    <div className="h-10 md:h-full w-1 bg-gradient-to-b from-[#3A9188]/40 via-[#B8E1DD]/20 to-[#3A9188]/40 mt-1 md:mt-2 rounded"></div>
+                  )}
+                </div>
+
+                <motion.div
+                  className={`bg-gradient-to-r from-[#3A9188]/30 via-[#B8E1DD]/20 to-[#3A9188]/30 p-5 md:p-6 rounded-2xl shadow-xl border border-[#B8E1DD]/20 w-full max-w-md hover:scale-105 transition-transform ${
+                    index % 2 === 0 ? "md:ml-1 text-left" : "md:mr-5 text-left"
+                  }`}
+                >
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#B8E1DD]">
+                    {edu.degree}
+                  </h3>
+                  <p className="text-[#B8E1DD] mt-1 text-sm sm:text-base md:text-lg">
+                    {edu.institution}
+                  </p>
+                  {edu.achievement && (
+                    <span className="text-[#B8E1DD]/80 mt-2 block font-medium text-sm sm:text-base md:text-base">
+                      {edu.achievement}
+                    </span>
+                  )}
+                  <div className="mt-2 flex justify-between md:flex-row-reverse text-xs sm:text-sm md:text-sm text-[#B8E1DD]/60">
+                    <span>{edu.year}</span>
+                    <span>{edu.time}</span>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }

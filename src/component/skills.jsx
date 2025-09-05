@@ -4,7 +4,6 @@ import {
 } from "react-icons/fa";
 import { SiTailwindcss, SiBootstrap, SiC, SiFlutter, SiExpress, SiMongodb } from "react-icons/si";
 
-// Frontend, Backend, Database Skills
 const frontendSkills = [
   { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
   { name: "CSS3", icon: <FaCss3Alt className="text-blue-600" /> },
@@ -30,7 +29,6 @@ const databaseSkills = [
 const conceptSkills = [
   { name: "OOP", icon: <FaBrain className="text-purple-500" /> },
   { name: "Data Structures", icon: <FaBrain className="text-purple-400" /> },
-  { name: "Algorithms", icon: <FaBrain className="text-purple-300" /> },
   { name: "Database Design", icon: <FaDatabase className="text-green-600" /> },
 ];
 
@@ -81,23 +79,18 @@ export default function Skills() {
           My Skills
         </motion.h2>
 
-        {/* Frontend Skills */}
         <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">Frontend Skills</h3>
         <SkillGrid skills={frontendSkills} />
 
-        {/* Backend Skills */}
         <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">Backend Skills</h3>
         <SkillGrid skills={backendSkills} />
 
-        {/* Database Skills */}
         <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">Database Skills</h3>
         <SkillGrid skills={databaseSkills} />
 
-        {/* Concept Skills */}
         <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">Concept Skills</h3>
         <SkillGrid skills={conceptSkills} />
 
-        {/* Soft Skills */}
         <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">Soft Skills</h3>
         <SkillGrid skills={softSkills} />
 
