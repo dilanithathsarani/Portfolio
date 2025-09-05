@@ -3,8 +3,16 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 
+import project1 from "../assets/portfolioProject.png";
+import project2 from "../assets/cbcFrontend.png";
+import project3 from "../assets/foodStallProject.png";
+import project4 from "../assets/juicebarProject.png";
+import project5 from "../assets/cbcBackend.png";
+import project6 from "../assets/personalProject.png";
+
 export default function Projects() {
   const [repos, setRepos] = useState([]);
+  const images = [project1, project2, project3, project4, project5,project6];
 
   useEffect(() => {
     axios
@@ -40,6 +48,13 @@ export default function Projects() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div>
+
+                <img
+                  src={images[index % images.length]} 
+                  alt={repo.name}
+                  className="w-full h-40 object-cover rounded-lg mb-4"
+                />
+
                 <h3 className="text-xl font-semibold mb-2 text-gray-800">
                   {repo.name}
                 </h3>
