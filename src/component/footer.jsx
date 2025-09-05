@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
 
         <div className="flex flex-col gap-3 text-sm font-medium">
-          <p>Quick Links</p>
+          <p class="text-lg font-semibold text-[#B8E1DD] mb-4 border-b-2 border-[#3A9188] inline-block">Quick Links</p>
           <a href="#home" className="hover:text-[#B8E1DD] transition">Home</a>
           <a href="#about" className="hover:text-[#B8E1DD] transition">About</a>
           <a href="#skills" className="hover:text-[#B8E1DD] transition">Skills</a>
