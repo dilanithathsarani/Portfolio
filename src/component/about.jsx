@@ -77,14 +77,14 @@ export default function About() {
           ))}
 
           <motion.a
-            href="#projects"
+            href="#contact"
             className="inline-flex items-center px-6 py-4 bg-[#3A9188] text-white font-medium rounded-xl shadow-lg hover:bg-[#062925] transition m-[10px]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             whileHover={{ scale: 1.05 }}
           >
-            View My Projects <FaArrowRight className="ml-2" />
+            Contact Me <FaArrowRight className="ml-2" />
           </motion.a>
         </motion.div>
       </div>
