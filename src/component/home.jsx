@@ -16,7 +16,7 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-bold mb-4">
+          <h1 className="text-5xl font-bold mb-4 pt-4">
             Hi, I'm <span className="text-[#B8E1DD]">Dilani Thathsarani</span>
           </h1>
           <h2 className="text-2xl text-[#B8E1DD] mb-6">
