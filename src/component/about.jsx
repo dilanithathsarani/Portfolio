@@ -134,7 +134,7 @@ export default function About() {
 
       <section
   id="education"
-  className="min-h-screen flex flex-col items-center justify-start bg-[#044A42] px-4 py-16 overflow-x-hidden"
+  className="min-h-screen flex flex-col items-center justify-center bg-[#044A42] px-4 py-16 -mt-20 overflow-x-hidden"
 >
   <div className="w-full max-w-6xl mx-auto relative">
     {/* Education Title */}
@@ -164,7 +164,7 @@ export default function About() {
         >
           {/* Icon */}
           <div className="absolute left-1/2 transform -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex flex-col items-center z-10">
-            <div className="bg-gradient-to-r from-[#3A9188] via-[#B8E1DD] to-[#3A9188] p-3 sm:p-4 rounded-full shadow-lg hover:shadow-2xl transition-transform hover:scale-110">
+            <div className="bg-gradient-to-r from-[#3A9188] via-[#B8E1DD] to-[#3A9188] md:mr-5 p-3 sm:p-4 rounded-full shadow-lg hover:shadow-2xl transition-transform hover:scale-110">
               {edu.icon}
             </div>
             {index !== educationData.length - 1 && (
@@ -175,7 +175,8 @@ export default function About() {
           {/* Card */}
           <motion.div
             className={`bg-gradient-to-r from-[#3A9188]/30 via-[#B8E1DD]/20 to-[#3A9188]/30 p-5 md:p-6 rounded-2xl shadow-xl border border-[#B8E1DD]/20 w-full max-w-md hover:scale-105 transition-transform ${
-              index % 2 === 0 ? "md:ml-12 text-left" : "md:mr-12 text-right"
+              index % 2 === 0 ? "md:ml-1 text-left" :
+               "md:mr-5 text-left"
             }`}
           >
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#B8E1DD]">{edu.degree}</h3>
@@ -185,7 +186,7 @@ export default function About() {
                 {edu.achievement}
               </span>
             )}
-            <div className="mt-2 flex justify-between text-xs sm:text-sm md:text-sm text-[#B8E1DD]/60">
+            <div className="mt-2 flex justify-between md:flex-row-reverse text-xs sm:text-sm md:text-sm text-[#B8E1DD]/60">
               <span>{edu.year}</span>
               <span>{edu.time}</span>
             </div>
