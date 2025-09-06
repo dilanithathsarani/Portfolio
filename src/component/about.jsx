@@ -20,7 +20,7 @@ export default function About() {
     },
     {
       level: "Ordinary Level (O/L)",
-      details: "Results: A4, B5",
+      details: "Results: A4 s, B5 s",
       year: "G/Anula Devi Balika Vidyalaya, Galle",
       time:"2019",
       icon: <FaSchool className="text-[#3A9188] w-5 h-5 animate-pulse" />,
