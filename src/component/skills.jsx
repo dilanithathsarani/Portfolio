@@ -28,14 +28,12 @@ const databaseSkills = [
 
 const conceptSkills = [
   { name: "OOP", icon: <FaBrain className="text-purple-500" /> },
-  { name: "Data Structures", icon: <FaBrain className="text-purple-400" /> },
   { name: "Database Design", icon: <FaDatabase className="text-green-600" /> },
 ];
 
 const softSkills = [
   { name: "Communication", icon: <FaUsers className="text-blue-400" /> },
   { name: "Problem Solving", icon: <FaLightbulb className="text-yellow-400" /> },
-  { name: "Creativity", icon: <FaBrain className="text-purple-400" /> },
   { name: "Teamwork", icon: <FaUsers className="text-green-400" /> },
   { name: "Time Management", icon: <FaLightbulb className="text-orange-400" /> },
 ];
