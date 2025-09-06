@@ -120,7 +120,7 @@ export default function About() {
                   transition={{ duration: 0.6, delay: idx * 0.2 }}
                 >
                   <span>{edu.icon}</span>
-                  <div className="text-left sm:text-left">
+                  <div>
                     <p className="font-semibold text-[#B8E1DD]">{edu.level}</p>
                     <p className="text-[#B8E1DD]/90">{edu.details}</p>
                     <p className="text-[#B8E1DD]/70 text-sm">{edu.year}</p>
