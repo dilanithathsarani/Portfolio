@@ -42,7 +42,7 @@ export default function About() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
         <motion.div
-          className="flex justify-center relative "
+          className="flex justify-center md:justify-start relative md:self-start mt-0 md:mt-0 lg:mt-20"
           initial={{ opacity: 0, scale: 0.6, y: 50 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, type: "spring" }}
