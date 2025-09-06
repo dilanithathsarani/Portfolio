@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center bg-[#062925] px-6 py-16 text-white"
+      className="min-h-screen flex items-center justify-center bg-[#062925] px-6 py-16 text-white overflow-x-hidden"
     >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 

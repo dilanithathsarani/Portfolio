@@ -5,7 +5,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-[#B8E1DD] via-[#3A9188] to-[#044A42] text-[#B8E1DD] shadow-lg z-50 overflow-hidden">
+    <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-[#B8E1DD] via-[#3A9188] to-[#044A42] text-[#B8E1DD] shadow-lg z-50 overflow-x-hidden">
       <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
         
         <h1 className="text-2xl font-bold text-[#062925]">

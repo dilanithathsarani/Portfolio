@@ -42,7 +42,7 @@ const softSkills = [
 
 function SkillGrid({ skills }) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 mb-12">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 mb-12 overflow-x-hidden">
       {skills.map((skill, index) => (
         <motion.div
           key={index}

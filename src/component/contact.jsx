@@ -5,7 +5,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen bg-[#3A9188] py-20 px-6 flex flex-col items-center"
+      className="min-h-screen bg-[#3A9188] py-20 px-6 flex flex-col items-center overflow-x-hidden"
     >
       <motion.h2
         className="text-4xl font-bold text-[#062925] mb-6"

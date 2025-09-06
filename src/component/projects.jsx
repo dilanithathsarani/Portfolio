@@ -27,7 +27,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section id="projects" className="min-h-screen bg-[#044A42] py-20 px-6">
+    <section id="projects" className="min-h-screen bg-[#044A42] py-20 px-6 overflow-x-hidden">
       <div className="max-w-6xl mx-auto text-center">
         <motion.h2
           className="text-4xl font-bold text-[#B8E1DD] mb-12"
