@@ -1,36 +1,46 @@
 import { motion } from "framer-motion";
 import profileImg from "../assets/about.jpg";
-import { FaArrowRight, FaSchool, FaGraduationCap } from "react-icons/fa";
+import { FaArrowRight, FaSchool, FaGraduationCap, FaBriefcase } from "react-icons/fa";
 
 export default function About() {
   const education = [
     {
-       level: "Undergraduate",
+      level: "Undergraduate",
       details: "BSc (Hons) in Computing & Information Systems",
       year: "Sabaragamuwa University of Sri Lanka",
-      time:"2024 - Present",
+      time: "2024 - Present",
       icon: <FaGraduationCap className="text-[#3A9188] w-5 h-5 animate-pulse" />,
     },
     {
       level: "Advanced Level (A/L) – Mathematical Stream",
       details: "Results: ABS",
       year: "G/Anula Devi Balika Vidyalaya, Galle",
-      time:"2020 - 2022",
+      time: "2020 - 2022",
       icon: <FaSchool className="text-[#3A9188] w-5 h-5 animate-pulse" />,
     },
     {
       level: "Ordinary Level (O/L)",
       details: "Results: A4 s, B5 s",
       year: "G/Anula Devi Balika Vidyalaya, Galle",
-      time:"2019",
+      time: "2019",
       icon: <FaSchool className="text-[#3A9188] w-5 h-5 animate-pulse" />,
     },
     {
-      level: "Certificate In Informaion Technology",
+      level: "Certificate In Information Technology",
       details: "Result: A",
       year: "Nenaiyasa - Rular Education Development & Vocational Training Institute",
-      time:"2020 Jan - 2020 Sep",
+      time: "2020 Jan - 2020 Sep",
       icon: <FaSchool className="text-[#3A9188] w-5 h-5 animate-pulse" />,
+    },
+  ];
+
+  const workExperience = [
+    {
+      role: "Assistant Accountant",
+      company: "Ranjanas Holding (Pvt) Ltd",
+      details: "Handled invoicing, payments, and financial records using accounting software.",
+      time: "2023 Mar - 2025 Sep",
+      icon: <FaBriefcase className="text-[#3A9188] w-5 h-5 animate-pulse" />,
     },
   ];
 
@@ -51,7 +61,7 @@ export default function About() {
           <motion.img
             src={profileImg}
             alt="Dilani Profile"
-            className="w-90 h-90 md:w-100 md:h-100 object-cover rounded-full border-4 border-[#3A9188] shadow-[0_0_80px_#3A9188] "
+            className="w-90 h-90 md:w-100 md:h-100 object-cover rounded-full border-4 border-[#3A9188] shadow-[0_0_80px_#3A9188]"
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -79,9 +89,9 @@ export default function About() {
           </motion.h2>
 
           {[
-            `I'm Dilani Thathsarani from Galle,Southern Province, an undergraduate at Sabaragamuwa University of Sri Lanka. I’m passionate about Web Development, Mobile Apps, and becoming a QA Engineer in the future.`,
+            `I'm Dilani Thathsarani from Galle, Southern Province, an undergraduate at Sabaragamuwa University of Sri Lanka. I’m passionate about Web Development, Mobile Apps, and becoming a QA Engineer in the future.`,
             `I completed my education at G/Anula Devi Balika Vidyalaya, Galle, where I did my O/Ls and A/Ls in the Physical Science stream.`,
-            `With skills in React, MySQL, Java, and Express.js, I enjoy building projects like  E-Business platforms. I'm constantly learning, improving, and excited to explore new tech.`,
+            `With skills in React, MySQL, Java, and Express.js, I enjoy building projects like E-Business platforms. I'm constantly learning, improving, and excited to explore new tech.`,
           ].map((text, index) => (
             <motion.p
               key={index}
@@ -109,7 +119,7 @@ export default function About() {
           ))}
 
           <motion.div className="mb-6 mt-6">
-            <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-4"> Education</h3>
+            <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-4">Education</h3>
             <ul className="space-y-6">
               {education.map((edu, idx) => (
                 <motion.li
@@ -120,11 +130,34 @@ export default function About() {
                   transition={{ duration: 0.6, delay: idx * 0.2 }}
                 >
                   <span>{edu.icon}</span>
-                  <div md:text-right>
+                  <div>
                     <p className="font-semibold text-[#B8E1DD]">{edu.level}</p>
                     <p className="text-[#B8E1DD]/90">{edu.details}</p>
                     <p className="text-[#B8E1DD]/70 text-sm">{edu.year}</p>
                     <p className="text-[#B8E1DD]/70 text-sm">{edu.time}</p>
+                  </div>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div className="mb-6 mt-6">
+            <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-4">Work Experience</h3>
+            <ul className="space-y-6">
+              {workExperience.map((work, idx) => (
+                <motion.li
+                  key={idx}
+                  className="flex items-start gap-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.2 }}
+                >
+                  <span>{work.icon}</span>
+                  <div>
+                    <p className="font-semibold text-[#B8E1DD]">{work.role}</p>
+                    <p className="text-[#B8E1DD]/90">{work.company}</p>
+                    <p className="text-[#B8E1DD]/70 text-sm">{work.details}</p>
+                    <p className="text-[#B8E1DD]/70 text-sm">{work.time}</p>
                   </div>
                 </motion.li>
               ))}
