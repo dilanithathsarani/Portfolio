@@ -89,7 +89,7 @@ export default function About() {
           </motion.h2>
 
           {[
-            `I'm Dilani Thathsarani from Galle, Southern Province, an undergraduate at Sabaragamuwa University of Sri Lanka. I’m passionate about Web Development, Mobile Apps, and becoming a QA Engineer in the future.`,
+            `I'm Dilani Thathsarani from Galle, Southern Province, an undergraduate at Sabaragamuwa University of Sri Lanka. I’m passionate about Web Development, Mobile Apps, UI/UX designs and becoming a QA Engineer in the future.`,
             `I completed my education at G/Anula Devi Balika Vidyalaya, Galle, where I did my O/Ls and A/Ls in the Physical Science stream.`,
             `With skills in React, MySQL, Java, and Express.js, I enjoy building projects like E-Business platforms. I'm constantly learning, improving, and excited to explore new tech.`,
           ].map((text, index) => (
@@ -102,10 +102,10 @@ export default function About() {
             >
               {text
                 .split(
-                  /(Web Development|Mobile Apps|QA Engineer|React|MySQL|Java|Express.js|Movie Ticket Booking System|AIVault)/g
+                  /(Web Development|Mobile Apps|QA Engineer|React|MySQL|Java|Express.js|UI\/UX designs)/g
                 )
                 .map((part, i) =>
-                  /Web Development|Mobile Apps|QA Engineer|React|MySQL|Java|Express.js|Movie Ticket Booking System|AIVault/.test(
+                  /Web Development|Mobile Apps|QA Engineer|React|MySQL|Java|Express.js|UI\/UX designs/.test(
                     part
                   ) ? (
                     <span key={i} className="text-[#3A9188] font-medium">

@@ -24,8 +24,8 @@ export default function Home() {
           </h2>
           <p className="text-lg text-gray-200 mb-6 leading-relaxed">
             I’m a <span className="font-semibold text-[#B8E1DD]">Web Developer</span>, 
-            <span className="font-semibold text-[#B8E1DD]"> Mobile App Developer</span>, 
-            and aspiring <span className="font-semibold text-[#B8E1DD]">QA Engineer</span>. 
+            <span className="font-semibold text-[#B8E1DD]"> UI/UX Designer </span>, 
+            and aspiring <span className="font-semibold text-[#B8E1DD]">QA Engineer & Mobile App Developer</span>. 
             My passion lies in <span className="italic">designing user-friendly interfaces, writing clean code</span>, 
             and <span className="italic">testing systems for reliability</span>. 
             I aim to bridge creativity with technology to deliver impactful digital solutions.
