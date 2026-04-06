@@ -4,93 +4,125 @@ import {
 } from "react-icons/fa";
 import { SiTailwindcss, SiBootstrap, SiC, SiFlutter, SiExpress, SiMongodb } from "react-icons/si";
 
+/* ---------------- SKILLS DATA ---------------- */
+
 const frontendSkills = [
-  { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
-  { name: "CSS3", icon: <FaCss3Alt className="text-blue-600" /> },
-  { name: "JavaScript", icon: <FaJs className="text-yellow-500" /> },
-  { name: "React", icon: <FaReact className="text-blue-500" /> },
-  { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-500" /> },
-  { name: "Bootstrap", icon: <SiBootstrap className="text-purple-600" />, studying: true },
-  { name: "Flutter", icon: <SiFlutter className="text-sky-500" />, studying: true },
+  { name: "HTML5", icon: <FaHtml5 className="text-orange-500" />, level: 75 },
+  { name: "CSS3", icon: <FaCss3Alt className="text-blue-600" />, level: 80 },
+  { name: "JavaScript", icon: <FaJs className="text-yellow-500" />, level: 50 },
+  { name: "React", icon: <FaReact className="text-blue-500" />, level: 45 },
+  { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-500" />, level: 35 },
+  { name: "Bootstrap", icon: <SiBootstrap className="text-purple-600" />, level: 30, studying: true },
+  { name: "Flutter", icon: <SiFlutter className="text-sky-500" />, level: 65, studying: true },
 ];
 
 const backendSkills = [
-  { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
-  { name: "Express.js", icon: <SiExpress className="text-gray-800" /> },
-  { name: "Java", icon: <FaJava className="text-red-600" /> },
-  { name: "C", icon: <SiC className="text-blue-700" /> },
+  { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, level: 30 },
+  { name: "Express", icon: <SiExpress className="text-gray-800" />, level: 25 },
+  { name: "Java", icon: <FaJava className="text-red-600" />, level: 70 },
+  { name: "C", icon: <SiC className="text-blue-700" />, level: 75 },
 ];
 
 const databaseSkills = [
-  { name: "MySQL", icon: <FaDatabase className="text-green-600" /> },
-  { name: "MongoDB", icon: <SiMongodb className="text-green-700" /> },
+  { name: "MySQL", icon: <FaDatabase className="text-green-600" />, level: 80 },
+  { name: "MongoDB", icon: <SiMongodb className="text-green-700" />, level: 40 },
 ];
 
 const conceptSkills = [
-  { name: "OOP", icon: <FaBrain className="text-purple-500" /> },
-  { name: "Database Design", icon: <FaDatabase className="text-green-600" /> },
+  { name: "OOP", icon: <FaBrain className="text-purple-500" />, level: 70 },
+  { name: "DB Design", icon: <FaDatabase className="text-green-600" />, level: 30 },
 ];
 
 const softSkills = [
-  { name: "Communication", icon: <FaUsers className="text-blue-400" /> },
-  { name: "Problem Solving", icon: <FaLightbulb className="text-yellow-400" /> },
-  { name: "Teamwork", icon: <FaUsers className="text-green-400" /> },
-  { name: "Time Management", icon: <FaLightbulb className="text-orange-400" /> },
+  { name: "Communication", icon: <FaUsers className="text-blue-400" />, level: 90 },
+  { name: "Problem Solving", icon: <FaLightbulb className="text-yellow-400" />, level: 80 },
+  { name: "Teamwork", icon: <FaUsers className="text-green-400" />, level: 85 },
+  { name: "Time Mgmt", icon: <FaLightbulb className="text-orange-400" />, level: 90 },
 ];
 
-function SkillGrid({ skills }) {
+/* ---------------- TABLE COMPONENT ---------------- */
+
+function SkillTable({ title, skills }) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 mb-12 overflow-x-hidden">
-      {skills.map((skill, index) => (
-        <motion.div
-          key={index}
-          className="relative flex flex-col items-center justify-center bg-[#B8E1DD] rounded-xl shadow-md p-6 hover:shadow-xl transition cursor-pointer"
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: index * 0.1 }}
-          whileHover={{ scale: 1.1 }}
-        >
-          <div className="text-5xl mb-4">{skill.icon}</div>
-          <p className="text-lg font-medium">{skill.name}</p>
-          {skill.studying && (
-            <span className="absolute top-2 right-2 text-xs bg-[#3A9188] text-gray-800 px-2 py-1 rounded-full">
-              Still Learning
-            </span>
-          )}
-        </motion.div>
-      ))}
+    <div className="bg-[#0A3A35] p-4 rounded-lg shadow-md">
+      
+      <h3 className="text-lg font-semibold text-[#B8E1DD] mb-4 text-left">
+        {title}
+      </h3>
+
+      <table className="w-full text-sm text-left text-gray-200">
+        <tbody>
+          {skills.map((skill, index) => (
+            <motion.tr
+              key={index}
+              className="border-b border-gray-600 hover:bg-[#124E48] transition"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.05 }}
+            >
+              
+              {/* ICON */}
+              <td className="py-2 pr-2 text-lg">
+                {skill.icon}
+              </td>
+
+              {/* NAME */}
+              <td className="py-2 pr-2">
+                {skill.name}
+                {skill.studying && (
+                  <span className="ml-2 text-xs bg-[#3A9188] px-2 py-0.5 rounded">
+                    Learning
+                  </span>
+                )}
+              </td>
+
+              {/* PROGRESS BAR */}
+              <td className="py-2 w-full">
+                <div className="w-full bg-gray-500 h-2 rounded-full">
+                  <motion.div
+                    className="bg-[#3A9188] h-2 rounded-full"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </div>
+              </td>
+
+              {/* % */}
+              <td className="py-2 pl-2 text-xs">
+                {skill.level}%
+              </td>
+
+            </motion.tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
 
+/* ---------------- MAIN PAGE ---------------- */
+
 export default function Skills() {
   return (
-    <section id="skills" className="min-h-screen bg-[#062925] py-20 px-6">
-      <div className="max-w-6xl mx-auto text-center">
+    <section className="min-h-screen bg-[#062925] py-10 px-6">
+      
+      <div className="max-w-6xl mx-auto">
 
-        <motion.h2
-          className="text-4xl font-bold text-[#B8E1DD] mb-12"
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <h2 className="text-3xl font-bold text-[#B8E1DD] mb-10 text-center">
           My Skills
-        </motion.h2>
+        </h2>
 
-        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">Frontend Skills</h3>
-        <SkillGrid skills={frontendSkills} />
+        {/* SIDE BY SIDE TABLES */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
-        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">Backend Skills</h3>
-        <SkillGrid skills={backendSkills} />
+          <SkillTable title="Frontend" skills={frontendSkills} />
+          <SkillTable title="Backend" skills={backendSkills} />
+          <SkillTable title="Database" skills={databaseSkills} />
+          <SkillTable title="Concepts" skills={conceptSkills} />
+          <SkillTable title="Soft Skills" skills={softSkills} />
 
-        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">Database Skills</h3>
-        <SkillGrid skills={databaseSkills} />
-
-        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">Concept Skills</h3>
-        <SkillGrid skills={conceptSkills} />
-
-        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">Soft Skills</h3>
-        <SkillGrid skills={softSkills} />
+        </div>
 
       </div>
     </section>
