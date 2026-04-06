@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import profileImg from "../assets/profile.jpg"; 
+import profileImg from "../assets/profile.jpeg"; 
 import { FaArrowRight } from "react-icons/fa";
 
 export default function Home() {

@@ -3,16 +3,36 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 
-import project1 from "../assets/portfolioProject.png";
-import project2 from "../assets/cbcFrontend.png";
-import project3 from "../assets/foodStallProject.png";
-import project4 from "../assets/juicebarProject.png";
-import project5 from "../assets/cbcBackend.png";
-import project6 from "../assets/personalProject.png";
+import project1 from "../assets/1.png";
+import project2 from "../assets/2.png";
+import project3 from "../assets/3.png";
+import project4 from "../assets/4.png";
+import project5 from "../assets/5.png";
+import project6 from "../assets/6.png";
+
+const featuredProjects = [
+  {
+    name: "Portfolio Project",
+    description: "Personal portfolio website built with React and Tailwind CSS.",
+    image: [project1,project2],
+    link: "https://github.com/dilanithathsarani/Portfolio.git",
+  },
+  {
+    name: "CBC E-Commerce Application",
+    description: "Frontend for CBC system with modern UI design.",
+    image: [project3,project4],
+    link: "https://github.com/dilanithathsarani/CBC---Frontend.git",
+  },
+  {
+    name: "Hiru News App",
+    description: "Build a news app using Flutter and NewsAPI for real-time news updates.",
+    image: [project5,project6],
+    link: "https://github.com/dilanithathsarani/Hiru_News_App_API_Testing.git",
+  },
+];
 
 export default function Projects() {
   const [repos, setRepos] = useState([]);
-  const images = [project1, project2, project3, project4, project5,project6];
 
   useEffect(() => {
     axios
@@ -20,65 +40,116 @@ export default function Projects() {
       .then((res) => {
         const sorted = res.data.sort(
           (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-        );
+        ).slice(0, 6);
         setRepos(sorted);
       })
       .catch((err) => console.error(err));
   }, []);
 
   return (
-    <section id="projects" className="min-h-screen bg-[#044A42] py-20 px-6 overflow-x-hidden">
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.h2
-          className="text-4xl font-bold text-[#B8E1DD] mb-12"
-          initial={{ opacity: 0, y: -40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          My Projects
-        </motion.h2>
+    <section className="min-h-screen bg-[#044A42] py-20 px-6">
+      <div className="max-w-6xl mx-auto">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {repos.slice(0, 6).map((repo, index) => (
+         <h2 className="text-4xl font-bold text-[#B8E1DD] mb-12 text-center">
+          My Projects
+        </h2>
+
+         <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">
+          Featured Projects
+        </h3>
+
+<div className="grid md:grid-cols-3 gap-8 mb-16">
+          {featuredProjects.map((project, index) => (
+        <motion.div
+        key={index}
+         className="bg-[#B8E1DD] rounded-xl shadow-md p-5 hover:shadow-xl transition"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <div className="grid grid-cols-2 gap-2 mb-4">
+        {project.image.map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt={`${project.name}-${i}`}
+            className="w-full h-40 object-cover rounded-lg"
+          />
+        ))}
+      </div>
+
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                {project.name}
+              </h4>
+
+              <p className="text-sm text-gray-600 mb-4">
+                {project.description}
+              </p>
+
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-[#062925] hover:text-[#3A9188]"
+              >
+                <FaGithub /> View Project
+              </a>
+            </motion.div>
+          ))}
+        </div>
+
+<h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">
+          Other Recent Projects
+        </h3>
+
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {repos.map((repo, index) => (
             <motion.div
               key={repo.id}
               className="bg-[#B8E1DD] rounded-xl shadow-md p-6 hover:shadow-xl transition flex flex-col justify-between"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{delay: index * 0.05 }}
             >
-              <div>
+              <h4 className="text-md font-semibold text-gray-800 mb-2 capitalize">
+                {repo.name.replace(/-/g, " ")}
+              </h4>
 
-                <img
-                  src={images[index % images.length]} 
-                  alt={repo.name}
-                  className="w-full h-40 object-cover rounded-lg mb-4"
-                />
+              <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                {repo.description || "No description available."}
+              </p>
 
-                <h3 className="text-xl font-semibold mb-2 text-gray-800">
-                  {repo.name}
-                </h3>
-                <p className="text-gray-600 text-sm line-clamp-3">
-                  {repo.description || "No description available."}
-                </p>
-              </div>
-              <div className="mt-4 flex justify-between items-center">
+              <div className="flex justify-between items-center">
                 <span className="text-xs text-gray-500">
                   ⭐ {repo.stargazers_count}
                 </span>
+
                 <a
                   href={repo.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-[#062925] hover:text-[#3A9188] transition"
+                  className="flex items-center gap-1 text-[#062925] hover:text-[#3A9188]"
                 >
-                  <FaGithub /> <span>View</span>
+                  <FaGithub /> View
                 </a>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      ))}
+    </div>
+
+    <div className="mt-12 text-center">
+      <a
+        href="https://github.com/dilanithathsarani?tab=repositories"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 bg-[#3A9188] text-white px-6 py-3 rounded-lg hover:bg-[#2e756e]"
+      >
+        <FaGithub />
+        View All Repositories
+      </a>
+    </div>
+  </div>
+</section>
   );
 }
