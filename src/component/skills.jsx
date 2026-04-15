@@ -104,11 +104,11 @@ function SkillTable({ title, skills }) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="min-h-screen bg-[#062925] py-10 px-6">
+    <section id="skills" className="min-h-screen bg-[#062925] py-12 px-4 sm:px-6">
       
       <div className="max-w-6xl mx-auto">
 
-        <h2 className="text-3xl font-bold text-[#B8E1DD] mb-10 mt-10 text-center">
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#B8E1DD] mb-10 mt-10 text-center">
           My Skills
         </h2>
 
