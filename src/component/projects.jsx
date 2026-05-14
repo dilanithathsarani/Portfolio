@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaFigma } from "react-icons/fa";
 
 import project1 from "../assets/1.png";
 import project2 from "../assets/2.png";
@@ -9,6 +9,9 @@ import project3 from "../assets/3.png";
 import project4 from "../assets/4.png";
 import project5 from "../assets/5.png";
 import project6 from "../assets/6.png";
+import project7 from "../assets/7.png"; 
+import project8 from "../assets/8.png"; 
+import project9 from "../assets/9.png"; 
 
 const featuredProjects = [
   {
@@ -28,6 +31,27 @@ const featuredProjects = [
     description: "Build a news app using Flutter and NewsAPI for real-time news updates.",
     image: [project5,project6],
     link: "https://github.com/dilanithathsarani/Hiru_News_App_API_Testing.git",
+  },
+];
+
+const uiUxProjects = [
+  {
+    name: "AI Alarm System App UI/UX Design",
+    description: "Our Capstone Project, AI Alarm System, is a smart mobile application designed with an intuitive and modern UI/UX to enhance productivity and daily routine management. The app integrates AI-based features to provide efficient alarm management, activity tracking, reminders, and personalized user experiences.",
+    image: [project7], // Placeholders, you can replace with real exports from your Figma!
+    link: "https://www.figma.com/design/yCJvUqUl9FE1qCY64u1bO5/AI-Alarm-System?node-id=0-1&m=dev&t=Y3Zho0Nil4FOozwM-1",
+  },
+  {
+    name: "AI Chatbot App UI/UX Design",
+    description: "AI ChatBot is an intelligent conversational application designed with a modern and interactive UI/UX to provide smooth communication between users and AI. The system focuses on delivering smart responses, easy navigation, and an engaging user experience through a clean and user-friendly interface.",
+    image: [project8], // Placeholders, you can replace with real exports from your Figma!
+    link: "https://www.figma.com/design/xJuvhSP79uds9b3peSYHf4/AI-ChatBot?node-id=1-2058&m=dev&t=RBidjDNCWYRURW2k-1",
+  },
+  {
+    name: "AI-Assisted Study Planner UI/UX Design",
+    description: "AI Assisted Study Planner is a smart and user-friendly application designed to help students organize their academic activities efficiently. The system provides features for study scheduling, task management, reminders, and progress tracking through a clean and interactive UI/UX design to support better learning and productivity.",
+    image: [project9], // Placeholders, you can replace with real exports from your Figma!
+    link: "https://www.figma.com/design/GMBwMKOoqSqij9o7HbaT61/AI-Assisted-Study-Planner?node-id=1-2&m=dev&t=dl4jazNVL0DEHzfW-1",
   },
 ];
 
@@ -98,7 +122,8 @@ export default function Projects() {
           ))}
         </div>
 
-<h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">
+
+        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6 mt-12">
           Other Recent Projects
         </h3>
 
@@ -138,7 +163,7 @@ export default function Projects() {
       ))}
     </div>
 
-    <div className="mt-12 text-center">
+    <div className="mt-8 mb-16 text-center">
       <a
         href="https://github.com/dilanithathsarani?tab=repositories"
         target="_blank"
@@ -149,6 +174,50 @@ export default function Projects() {
         View All Repositories
       </a>
     </div>
+
+        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6 mt-8">
+          UI/UX Design Projects
+        </h3>
+
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {uiUxProjects.map((project, index) => (
+            <motion.div
+              key={index}
+              className="bg-[#B8E1DD] rounded-xl shadow-md p-5 hover:shadow-xl transition flex flex-col justify-between"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <div>
+                <div className="mb-4">
+                  <img
+                    src={project.image[0]}
+                    alt={project.name}
+                    className="w-full h-48 object-cover rounded-lg shadow-sm"
+                  />
+                </div>
+
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                  {project.name}
+                </h4>
+
+                <p className="text-sm text-gray-600 mb-4">
+                  {project.description}
+                </p>
+              </div>
+
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-[#062925] hover:text-[#3A9188] font-medium mt-auto"
+              >
+                <FaFigma className="w-5 h-5" /> View Design
+              </a>
+            </motion.div>
+          ))}
+        </div>
+
   </div>
 </section>
   );

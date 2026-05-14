@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaHome, FaUser, FaCode, FaProjectDiagram, FaEnvelope, FaBars, FaTimes } from "react-icons/fa";
+import { FaHome, FaUser, FaCode, FaProjectDiagram, FaEnvelope, FaBars, FaTimes, FaCertificate } from "react-icons/fa";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -18,6 +18,9 @@ export default function Navbar() {
           </li>
           <li className="flex items-center gap-2 hover:text-white cursor-pointer transition">
             <FaUser /> <a href="#about">About</a>
+          </li>
+          <li className="flex items-center gap-2 hover:text-white cursor-pointer transition">
+            <FaCertificate /> <a href="#certificates">Certificates</a>
           </li>
           <li className="flex items-center gap-2 hover:text-white cursor-pointer transition">
             <FaCode /> <a href="#skills">Skills</a>
@@ -42,6 +45,9 @@ export default function Navbar() {
           </li>
           <li className="flex items-center gap-2 hover:text-white">
             <FaUser /> <a href="#about" onClick={() => setOpen(false)}>About</a>
+          </li>
+          <li className="flex items-center gap-2 hover:text-white">
+            <FaCertificate /> <a href="#certificates" onClick={() => setOpen(false)}>Certificates</a>
           </li>
           <li className="flex items-center gap-2 hover:text-white">
             <FaCode /> <a href="#skills" onClick={() => setOpen(false)}>Skills</a>

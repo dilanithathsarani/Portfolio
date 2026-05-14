@@ -10,6 +10,7 @@ export default function Footer() {
           <p class="text-lg font-semibold text-[#B8E1DD] mb-4 border-b-2 border-[#3A9188] inline-block">Quick Links</p>
           <a href="#home" className="hover:text-[#B8E1DD] transition">Home</a>
           <a href="#about" className="hover:text-[#B8E1DD] transition">About</a>
+          <a href="#certificates" className="hover:text-[#B8E1DD] transition">Certificates</a>
           <a href="#skills" className="hover:text-[#B8E1DD] transition">Skills</a>
           <a href="#projects" className="hover:text-[#B8E1DD] transition">Projects</a>
           <a href="#contact" className="hover:text-[#B8E1DD] transition">Contact</a>
