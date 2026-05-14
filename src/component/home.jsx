@@ -31,11 +31,11 @@ export default function Home() {
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
 
-      <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10 w-full pt-4 lg:pt-10">
+      <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-x-10 lg:gap-y-0 items-center relative z-10 w-full pt-4 lg:pt-10">
 
         {/* 1. Name Title & Roles */}
         <motion.div
-          className="order-1 lg:col-start-1 lg:row-start-1 text-center lg:text-left w-full z-20"
+          className="order-1 lg:col-start-1 lg:row-start-1 text-center lg:text-left w-full z-20 lg:self-end"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -67,7 +67,7 @@ export default function Home() {
 
         {/* 3. Rest of Text Content */}
         <motion.div
-          className="order-3 lg:col-start-1 lg:row-start-2 text-center lg:text-left flex flex-col justify-center w-full z-20 mt-4 lg:mt-0"
+          className="order-3 lg:col-start-1 lg:row-start-2 text-center lg:text-left flex flex-col justify-center w-full z-20 mt-4 lg:mt-0 lg:self-start"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
