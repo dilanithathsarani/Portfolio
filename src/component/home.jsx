@@ -31,25 +31,23 @@ export default function Home() {
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
 
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10 w-full pt-10">
+      <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10 w-full pt-4 lg:pt-10">
 
-        {/* Text Content */}
+        {/* 1. Name Title & Roles */}
         <motion.div
-          className="text-center lg:text-left flex flex-col justify-center" 
+          className="order-1 lg:col-start-1 lg:row-start-1 text-center lg:text-left w-full z-20"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-block mb-4">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              Hi, I'm <br className="hidden lg:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B8E1DD] to-[#3A9188] drop-shadow-sm mt-2 inline-block">
-                Dilani Thathsarani
-              </span>
-            </h1>
-          </div>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-2 lg:mb-4">
+            Hi, I'm <br className="hidden lg:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B8E1DD] to-[#3A9188] drop-shadow-sm mt-2 inline-block">
+              Dilani Thathsarani
+            </span>
+          </h1>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl mb-6 font-medium tracking-wide min-h-[80px] lg:min-h-[100px] flex items-center justify-center lg:justify-start">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl mb-2 lg:mb-6 font-medium tracking-wide min-h-[80px] lg:min-h-[100px] flex items-center justify-center lg:justify-start">
             <span className="text-[#B8E1DD] font-extrabold relative drop-shadow-[0_0_20px_rgba(58,145,136,1)] py-4">
               <AnimatePresence mode="wait">
                 <motion.span
@@ -65,6 +63,15 @@ export default function Home() {
               </AnimatePresence>
             </span>
           </h2>
+        </motion.div>
+
+        {/* 3. Rest of Text Content */}
+        <motion.div
+          className="order-3 lg:col-start-1 lg:row-start-2 text-center lg:text-left flex flex-col justify-center w-full z-20 mt-4 lg:mt-0"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
 
           <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
             I’m an undergraduate at <span className="font-semibold text-white">Sabaragamuwa University of Sri Lanka</span>. 
@@ -113,9 +120,9 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Profile Image Area */}
+        {/* 2. Profile Image Area */}
         <motion.div
-          className="flex justify-center relative mt-10 lg:mt-0"
+          className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2 flex justify-center relative mt-6 mb-4 lg:mt-0 lg:mb-0 w-full z-10"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
