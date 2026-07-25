@@ -17,13 +17,15 @@ const featuredProjects = [
   {
     name: "Portfolio Project",
     description:
-     "Personal Portfolio Website is a modern, responsive web application built to showcase my projects, technical skills, education, certifications, and professional journey as a Computing and Information Systems undergraduate. Developed with React and Tailwind CSS, it features a clean interface, smooth animations, responsive layouts, a downloadable resume, and a contact section. The website is optimized for performance and user experience across all devices and is deployed on Vercel for fast and reliable hosting.",
+      "Personal Portfolio Website is a modern, responsive web application built to showcase my projects, technical skills, education, certifications, and professional journey as a Computing and Information Systems undergraduate. Developed with React and Tailwind CSS, it features a clean interface, smooth animations, responsive layouts, a downloadable resume, and a contact section. The website is optimized for performance and user experience across all devices and is deployed on Vercel for fast and reliable hosting.",
+    image: [project1, project2],
     link: "https://github.com/dilanithathsarani/Portfolio.git",
   },
   {
     name: "CBC E-Commerce Application",
     description:
-      "CBC is a full-stack MERN web application built to deliver a modern, responsive, and user-friendly experience. Developed using React, Tailwind CSS, Node.js, Express.js, and MongoDB, the application enables seamless interaction between the frontend and backend through RESTful APIs. It follows a scalable and maintainable architecture, ensuring efficient data management, responsive design, and smooth performance across all devices. The frontend is deployed on Vercel, while the backend is hosted on Render for reliable and efficient production deployment.",
+      "CBC is a full-stack MERN web application built to deliver a modern, responsive, and user-friendly experience. Developed using React, Tailwind CSS, Node.js, Express.js, and MongoDB, the application enables seamless interaction between the frontend and backend through RESTful APIs. It follows a scalable and maintainable architecture, ensuring efficient data management, responsive design, and smooth performance across all devices. The frontend is deploye",
+    image: [project3, project4],
     link: "https://github.com/dilanithathsarani/CBC---Frontend.git",
   },
   {
