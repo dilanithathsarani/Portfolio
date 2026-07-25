@@ -16,13 +16,13 @@ import project9 from "../assets/9.png";
 const featuredProjects = [
   {
     name: "Portfolio Project",
-    description: "Personal portfolio website built with React and Tailwind CSS.",
+    description: "Personal Portfolio Website is a modern, responsive web application built to showcase my skills, projects, education, certifications, and professional journey as a Computing and Information Systems undergraduate. The portfolio provides visitors, recruiters, and potential collaborators with an engaging platform to explore my work, technical expertise, and achievements.The website features a clean and intuitive user interface, smooth animations, responsive layouts, project showcases, a skills section, education timeline, certifications, downloadable resume, and an integrated contact section. Built with React and Tailwind CSS, the application emphasizes performance, maintainability, and an excellent user experience across desktop, tablet, and mobile devices. It is deployed on Vercel for fast and reliable hosting.",
     image: [project1,project2],
     link: "https://github.com/dilanithathsarani/Portfolio.git",
   },
   {
     name: "CBC E-Commerce Application",
-    description: "Frontend for CBC system with modern UI design.",
+    description: "CBC is a full-stack web application developed using the MERN Stack to provide a modern, scalable, and responsive platform for users. The application features a clean and intuitive user interface, secure authentication, efficient data management, and seamless communication between the frontend and backend through RESTful APIs.The frontend is built with React and Tailwind CSS, delivering a fast, responsive, and engaging user experience. The backend is powered by Node.js and Express.js, while MongoDB serves as the database for securely storing and managing application data. The frontend is deployed on Vercel, and the backend is hosted on Render, ensuring reliable performance and accessibility.The project follows a modular architecture with reusable components, efficient state management, and responsive design principles, making it scalable and easy to maintain.",
     image: [project3,project4],
     link: "https://github.com/dilanithathsarani/CBC---Frontend.git",
   },
