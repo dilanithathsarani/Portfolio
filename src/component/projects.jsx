@@ -9,27 +9,28 @@ import project3 from "../assets/3.png";
 import project4 from "../assets/4.png";
 import project5 from "../assets/5.png";
 import project6 from "../assets/6.png";
-import project7 from "../assets/7.png"; 
-import project8 from "../assets/8.png"; 
-import project9 from "../assets/9.png"; 
+import project7 from "../assets/7.png";
+import project8 from "../assets/8.png";
+import project9 from "../assets/9.png";
 
 const featuredProjects = [
   {
     name: "Portfolio Project",
-    description: "Personal Portfolio Website is a modern, responsive web application built to showcase my skills, projects, education, certifications, and professional journey as a Computing and Information Systems undergraduate. The portfolio provides visitors, recruiters, and potential collaborators with an engaging platform to explore my work, technical expertise, and achievements.The website features a clean and intuitive user interface, smooth animations, responsive layouts, project showcases, a skills section, education timeline, certifications, downloadable resume, and an integrated contact section. Built with React and Tailwind CSS, the application emphasizes performance, maintainability, and an excellent user experience across desktop, tablet, and mobile devices. It is deployed on Vercel for fast and reliable hosting.",
-    image: [project1,project2],
+    description:
+     "Personal Portfolio Website is a modern, responsive web application built to showcase my projects, technical skills, education, certifications, and professional journey as a Computing and Information Systems undergraduate. Developed with React and Tailwind CSS, it features a clean interface, smooth animations, responsive layouts, a downloadable resume, and a contact section. The website is optimized for performance and user experience across all devices and is deployed on Vercel for fast and reliable hosting.",
     link: "https://github.com/dilanithathsarani/Portfolio.git",
   },
   {
     name: "CBC E-Commerce Application",
-    description: "CBC is a full-stack web application developed using the MERN Stack to provide a modern, scalable, and responsive platform for users. The application features a clean and intuitive user interface, secure authentication, efficient data management, and seamless communication between the frontend and backend through RESTful APIs.The frontend is built with React and Tailwind CSS, delivering a fast, responsive, and engaging user experience. The backend is powered by Node.js and Express.js, while MongoDB serves as the database for securely storing and managing application data. The frontend is deployed on Vercel, and the backend is hosted on Render, ensuring reliable performance and accessibility.The project follows a modular architecture with reusable components, efficient state management, and responsive design principles, making it scalable and easy to maintain.",
-    image: [project3,project4],
+    description:
+      "CBC is a full-stack MERN web application built to deliver a modern, responsive, and user-friendly experience. Developed using React, Tailwind CSS, Node.js, Express.js, and MongoDB, the application enables seamless interaction between the frontend and backend through RESTful APIs. It follows a scalable and maintainable architecture, ensuring efficient data management, responsive design, and smooth performance across all devices. The frontend is deployed on Vercel, while the backend is hosted on Render for reliable and efficient production deployment.",
     link: "https://github.com/dilanithathsarani/CBC---Frontend.git",
   },
   {
     name: "Hiru News App",
-    description: "Build a news app using Flutter and NewsAPI for real-time news updates.",
-    image: [project5,project6],
+    description:
+      "Build a news app using Flutter and NewsAPI for real-time news updates.",
+    image: [project5, project6],
     link: "https://github.com/dilanithathsarani/Hiru_News_App_API_Testing.git",
   },
 ];
@@ -37,19 +38,22 @@ const featuredProjects = [
 const uiUxProjects = [
   {
     name: "AI Alarm System App UI/UX Design",
-    description: "Our Capstone Project, AI Alarm System, is a smart mobile application designed with an intuitive and modern UI/UX to enhance productivity and daily routine management. The app integrates AI-based features to provide efficient alarm management, activity tracking, reminders, and personalized user experiences.",
+    description:
+      "Our Capstone Project, AI Alarm System, is a smart mobile application designed with an intuitive and modern UI/UX to enhance productivity and daily routine management. The app integrates AI-based features to provide efficient alarm management, activity tracking, reminders, and personalized user experiences.",
     image: [project7], // Placeholders, you can replace with real exports from your Figma!
     link: "https://www.figma.com/design/yCJvUqUl9FE1qCY64u1bO5/AI-Alarm-System?node-id=0-1&m=dev&t=Y3Zho0Nil4FOozwM-1",
   },
   {
     name: "AI Chatbot App UI/UX Design",
-    description: "AI ChatBot is an intelligent conversational application designed with a modern and interactive UI/UX to provide smooth communication between users and AI. The system focuses on delivering smart responses, easy navigation, and an engaging user experience through a clean and user-friendly interface.",
+    description:
+      "AI ChatBot is an intelligent conversational application designed with a modern and interactive UI/UX to provide smooth communication between users and AI. The system focuses on delivering smart responses, easy navigation, and an engaging user experience through a clean and user-friendly interface.",
     image: [project8], // Placeholders, you can replace with real exports from your Figma!
     link: "https://www.figma.com/design/xJuvhSP79uds9b3peSYHf4/AI-ChatBot?node-id=1-2058&m=dev&t=RBidjDNCWYRURW2k-1",
   },
   {
     name: "AI-Assisted Study Planner UI/UX Design",
-    description: "AI Assisted Study Planner is a smart and user-friendly application designed to help students organize their academic activities efficiently. The system provides features for study scheduling, task management, reminders, and progress tracking through a clean and interactive UI/UX design to support better learning and productivity.",
+    description:
+      "AI Assisted Study Planner is a smart and user-friendly application designed to help students organize their academic activities efficiently. The system provides features for study scheduling, task management, reminders, and progress tracking through a clean and interactive UI/UX design to support better learning and productivity.",
     image: [project9], // Placeholders, you can replace with real exports from your Figma!
     link: "https://www.figma.com/design/GMBwMKOoqSqij9o7HbaT61/AI-Assisted-Study-Planner?node-id=1-2&m=dev&t=dl4jazNVL0DEHzfW-1",
   },
@@ -62,9 +66,9 @@ export default function Projects() {
     axios
       .get("https://api.github.com/users/dilanithathsarani/repos")
       .then((res) => {
-        const sorted = res.data.sort(
-          (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-        ).slice(0, 6);
+        const sorted = res.data
+          .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+          .slice(0, 6);
         setRepos(sorted);
       })
       .catch((err) => console.error(err));
@@ -73,34 +77,33 @@ export default function Projects() {
   return (
     <section id="projects" className="min-h-screen bg-[#044A42] py-20 px-6">
       <div className="max-w-6xl mx-auto">
-
-         <h2 className="text-4xl font-bold text-[#B8E1DD] mb-12 text-center">
+        <h2 className="text-4xl font-bold text-[#B8E1DD] mb-12 text-center">
           My Projects
         </h2>
 
-         <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">
+        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">
           Featured Projects
         </h3>
 
-<div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {featuredProjects.map((project, index) => (
-        <motion.div
-        key={index}
-         className="bg-[#B8E1DD] rounded-xl shadow-md p-5 hover:shadow-xl transition"
+            <motion.div
+              key={index}
+              className="bg-[#B8E1DD] rounded-xl shadow-md p-5 hover:shadow-xl transition"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
               <div className="grid grid-cols-2 gap-2 mb-4">
-        {project.image.map((img, i) => (
-          <img
-            key={i}
-            src={img}
-            alt={`${project.name}-${i}`}
-            className="w-full h-40 object-cover rounded-lg"
-          />
-        ))}
-      </div>
+                {project.image.map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt={`${project.name}-${i}`}
+                    className="w-full h-40 object-cover rounded-lg"
+                  />
+                ))}
+              </div>
 
               <h4 className="text-lg font-semibold text-gray-800 mb-2">
                 {project.name}
@@ -122,11 +125,9 @@ export default function Projects() {
           ))}
         </div>
 
-
         <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6 mt-12">
           Other Recent Projects
         </h3>
-
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           {repos.map((repo, index) => (
@@ -135,7 +136,7 @@ export default function Projects() {
               className="bg-[#B8E1DD] rounded-xl shadow-md p-6 hover:shadow-xl transition flex flex-col justify-between"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{delay: index * 0.05 }}
+              transition={{ delay: index * 0.05 }}
             >
               <h4 className="text-md font-semibold text-gray-800 mb-2 capitalize">
                 {repo.name.replace(/-/g, " ")}
@@ -159,21 +160,21 @@ export default function Projects() {
                   <FaGithub /> View
                 </a>
               </div>
-        </motion.div>
-      ))}
-    </div>
+            </motion.div>
+          ))}
+        </div>
 
-    <div className="mt-8 mb-16 text-center">
-      <a
-        href="https://github.com/dilanithathsarani?tab=repositories"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 bg-[#3A9188] text-white px-6 py-3 rounded-lg hover:bg-[#2e756e]"
-      >
-        <FaGithub />
-        View All Repositories
-      </a>
-    </div>
+        <div className="mt-8 mb-16 text-center">
+          <a
+            href="https://github.com/dilanithathsarani?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-[#3A9188] text-white px-6 py-3 rounded-lg hover:bg-[#2e756e]"
+          >
+            <FaGithub />
+            View All Repositories
+          </a>
+        </div>
 
         <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6 mt-8">
           UI/UX Design Projects
@@ -217,8 +218,7 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
-
-  </div>
-</section>
+      </div>
+    </section>
   );
 }
