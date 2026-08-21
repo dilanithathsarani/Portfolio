@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { motion } from "framer-motion";
-import { FaGithub, FaFigma } from "react-icons/fa";
+import { FaGithub, FaFigma, FaExternalLinkAlt, FaPalette, FaLaptopCode } from "react-icons/fa";
 
 import project1 from "../assets/1.png";
 import project2 from "../assets/2.png";
@@ -10,217 +8,290 @@ import project4 from "../assets/4.png";
 import project5 from "../assets/5.png";
 import project6 from "../assets/6.png";
 import project7 from "../assets/7.png";
-import project8 from "../assets/8.png";
-import project9 from "../assets/9.png";
-
-const featuredProjects = [
-  {
-    name: "Portfolio Project",
-    description:
-      "Personal Portfolio Website is a modern, responsive web application built to showcase my projects, technical skills, education, certifications, and professional journey as a Computing and Information Systems undergraduate. Developed with React and Tailwind CSS, it features a clean interface, smooth animations, responsive layouts, a downloadable resume, and a contact section. The website is optimized for performance and user experience across all devices and is deployed on Vercel for fast and reliable hosting.",
-    image: [project1, project2],
-    link: "https://github.com/dilanithathsarani/Portfolio.git",
-  },
-  {
-    name: "CBC E-Commerce Application",
-    description:
-      "CBC is a full-stack MERN web application built to deliver a modern, responsive, and user-friendly experience. Developed using React, Tailwind CSS, Node.js, Express.js, and MongoDB, the application enables seamless interaction between the frontend and backend through RESTful APIs. It follows a scalable and maintainable architecture, ensuring efficient data management, responsive design, and smooth performance across all devices. The frontend is deploye",
-    image: [project3, project4],
-    link: "https://github.com/dilanithathsarani/CBC---Frontend.git",
-  },
-  {
-    name: "Hiru News App",
-    description:
-      "Build a news app using Flutter and NewsAPI for real-time news updates.",
-    image: [project5, project6],
-    link: "https://github.com/dilanithathsarani/Hiru_News_App_API_Testing.git",
-  },
-];
-
-const uiUxProjects = [
-  {
-    name: "AI Alarm System App UI/UX Design",
-    description:
-      "Our Capstone Project, AI Alarm System, is a smart mobile application designed with an intuitive and modern UI/UX to enhance productivity and daily routine management. The app integrates AI-based features to provide efficient alarm management, activity tracking, reminders, and personalized user experiences.",
-    image: [project7], // Placeholders, you can replace with real exports from your Figma!
-    link: "https://www.figma.com/design/yCJvUqUl9FE1qCY64u1bO5/AI-Alarm-System?node-id=0-1&m=dev&t=Y3Zho0Nil4FOozwM-1",
-  },
-  {
-    name: "AI Chatbot App UI/UX Design",
-    description:
-      "AI ChatBot is an intelligent conversational application designed with a modern and interactive UI/UX to provide smooth communication between users and AI. The system focuses on delivering smart responses, easy navigation, and an engaging user experience through a clean and user-friendly interface.",
-    image: [project8], // Placeholders, you can replace with real exports from your Figma!
-    link: "https://www.figma.com/design/xJuvhSP79uds9b3peSYHf4/AI-ChatBot?node-id=1-2058&m=dev&t=RBidjDNCWYRURW2k-1",
-  },
-  {
-    name: "AI-Assisted Study Planner UI/UX Design",
-    description:
-      "AI Assisted Study Planner is a smart and user-friendly application designed to help students organize their academic activities efficiently. The system provides features for study scheduling, task management, reminders, and progress tracking through a clean and interactive UI/UX design to support better learning and productivity.",
-    image: [project9], // Placeholders, you can replace with real exports from your Figma!
-    link: "https://www.figma.com/design/GMBwMKOoqSqij9o7HbaT61/AI-Assisted-Study-Planner?node-id=1-2&m=dev&t=dl4jazNVL0DEHzfW-1",
-  },
-];
 
 export default function Projects() {
-  const [repos, setRepos] = useState([]);
+  // Featured Web & Mobile Projects
+  const webAndMobileProjects = [
+    {
+      id: "job-portal",
+      name: "Job Portal Platform",
+      category: "web",
+      type: "Full-Stack Web App",
+      description: "A comprehensive web-based Job Portal platform empowering job seekers to search openings, submit applications, and manage profiles while allowing recruiters to publish listings and track candidates.",
+      tags: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
+      images: [project1],
+      github: "https://github.com/dilanithathsarani/Job-Portal---frontend.git",
+    },
+    {
+      id: "smart-ai-alarm",
+      name: "Smart AI Alarm System",
+      category: "mobile",
+      type: "Capstone Project • AI Mobile App",
+      description: "An intelligent AI-driven smart alarm mobile application developed as a capstone project. Features automated wake-up routines, intelligent scheduling, habit analytics, and AI assistance.",
+      tags: ["Flutter", "Dart", "AI & ML", "REST API", "Firebase"],
+      images: [project5],
+      github: "https://github.com/Ashiy-Ishan/Smart_AI_Alarm.git",
+    },
+    {
+      id: "portfolio",
+      name: "Personal Portfolio Website",
+      category: "web",
+      type: "Full-Stack Web App",
+      description: "A modern, responsive personal portfolio built with React, Vite, and Tailwind CSS to showcase projects, technical skills, certifications, and career journey with smooth animations.",
+      tags: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
+      images: [project2],
+      github: "https://github.com/dilanithathsarani/Portfolio.git",
+      demo: "#",
+    },
+    {
+      id: "cbc-ecommerce",
+      name: "CBC E-Commerce Platform",
+      category: "web",
+      type: "MERN Stack E-Business App",
+      description: "Full-stack e-commerce application built using React, Node.js, Express, and MongoDB. Includes user authentication, product catalog, cart management, and RESTful API backend architecture.",
+      tags: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind"],
+      images: [project3],
+      github: "https://github.com/dilanithathsarani/CBC---Frontend.git",
+    },
+    {
+      id: "hiru-news",
+      name: "Hiru News Mobile App",
+      category: "mobile",
+      type: "Flutter Mobile Application",
+      description: "Cross-platform real-time news application developed in Flutter. Integrated with RESTful News APIs for live news feeds, category filtering, and offline caching support.",
+      tags: ["Flutter", "Dart", "REST API", "State Management"],
+      images: [project4],
+      github: "https://github.com/dilanithathsarani/Hiru_News_App_API_Testing.git",
+    },
+  ];
 
-  useEffect(() => {
-    axios
-      .get("https://api.github.com/users/dilanithathsarani/repos")
-      .then((res) => {
-        const sorted = res.data
-          .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-          .slice(0, 6);
-        setRepos(sorted);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  // UI/UX Projects (Figma)
+  const uiUxProjects = [
+    {
+      id: "ai-alarm",
+      name: "AI Alarm System App UI/UX",
+      category: "uiux",
+      type: "Capstone Project • Mobile UI/UX Prototype",
+      description: "Comprehensive mobile app UI/UX design created in Figma for an AI-powered smart alarm system. Features routine scheduling, intelligent notifications, and habit analytics.",
+      tags: ["Figma", "UI/UX Design", "Wireframing", "Prototyping"],
+      images: [project5],
+      figma: "https://www.figma.com/design/yCJvUqUl9FE1qCY64u1bO5/AI-Alarm-System?node-id=0-1&m=dev&t=Y3Zho0Nil4FOozwM-1",
+    },
+    {
+      id: "ai-chatbot",
+      name: "AI ChatBot App UI/UX Design",
+      category: "uiux",
+      type: "Conversational UI Prototype",
+      description: "Modern, interactive chat interface design for conversational AI assistants. Clean visual hierarchy, dark & light mode component variants, and intuitive chat flows.",
+      tags: ["Figma", "Conversational UI", "Design System", "Prototyping"],
+      images: [project6],
+      figma: "https://www.figma.com/design/xJuvhSP79uds9b3peSYHf4/AI-ChatBot?node-id=1-2058&m=dev&t=RBidjDNCWYRURW2k-1",
+    },
+    {
+      id: "ai-study-planner",
+      name: "AI Study Planner UI/UX",
+      category: "uiux",
+      type: "EdTech Interface Design",
+      description: "User-centric academic planner UI designed to help students schedule study sessions, set exam reminders, and track progress through interactive visual dashboards.",
+      tags: ["Figma", "User Research", "Wireframing", "EdTech UI"],
+      images: [project7],
+      figma: "https://www.figma.com/design/GMBwMKOoqSqij9o7HbaT61/AI-Assisted-Study-Planner?node-id=1-2&m=dev&t=dl4jazNVL0DEHzfW-1",
+    },
+  ];
 
   return (
-    <section id="projects" className="min-h-screen bg-[#044A42] py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-[#B8E1DD] mb-12 text-center">
-          My Projects
-        </h2>
+    <section id="projects" className="min-h-screen bg-white py-24 px-6 border-t border-slate-100">
+      <div className="max-w-7xl mx-auto">
 
-        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6">
-          Featured Projects
-        </h3>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-[#3A9188] font-bold text-xs md:text-sm tracking-wider uppercase bg-[#B8E1DD]/30 px-3.5 py-1.5 rounded-full inline-block mb-3">
+            Portfolio Showcase
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Featured Projects & Designs
+          </h2>
+          <p className="text-slate-600 text-base md:text-lg mt-3">
+            Explore my work in Web Development, Mobile Applications, and Figma UI/UX Design prototypes.
+          </p>
+          <div className="w-16 h-1 bg-[#3A9188] mx-auto mt-4 rounded-full" />
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {featuredProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="bg-[#B8E1DD] rounded-xl shadow-md p-5 hover:shadow-xl transition"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <div className="grid grid-cols-2 gap-2 mb-4">
-                {project.image.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img}
-                    alt={`${project.name}-${i}`}
-                    className="w-full h-40 object-cover rounded-lg"
-                  />
-                ))}
-              </div>
+        {/* --- WEB & MOBILE PROJECTS SHOWCASE --- */}
+        <div className="mb-20">
+          <div className="flex items-center justify-between mb-8 pb-3 border-b border-slate-200">
+            <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <FaLaptopCode className="text-[#3A9188]" /> Web & Mobile Development
+            </h3>
+            <span className="text-xs font-semibold text-slate-500">
+              Code Repositories
+            </span>
+          </div>
 
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">
-                {project.name}
-              </h4>
-
-              <p className="text-sm text-gray-600 mb-4">
-                {project.description}
-              </p>
-
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-[#062925] hover:text-[#3A9188]"
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {webAndMobileProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                className="bg-slate-50 rounded-3xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <FaGithub /> View Project
-              </a>
-            </motion.div>
-          ))}
-        </div>
+                <div>
+                  {/* Browser Frame Window Header */}
+                  <div className="bg-slate-200/60 px-4 py-2 flex items-center gap-1.5 border-b border-slate-200">
+                    <span className="w-2.5 h-2.5 rounded-full bg-rose-400 inline-block" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block" />
+                    <span className="text-[11px] font-mono text-slate-500 ml-2 truncate">
+                      {project.name.toLowerCase().replace(/\s+/g, "-")}
+                    </span>
+                  </div>
 
-        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6 mt-12">
-          Other Recent Projects
-        </h3>
+                  {/* Single Main Image Screenshot */}
+                  <div className="relative overflow-hidden bg-slate-100 h-52 sm:h-56 p-3">
+                    <img
+                      src={project.images[0]}
+                      alt={project.name}
+                      className="w-full h-full object-cover rounded-2xl shadow-sm group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {repos.map((repo, index) => (
-            <motion.div
-              key={repo.id}
-              className="bg-[#B8E1DD] rounded-xl shadow-md p-6 hover:shadow-xl transition flex flex-col justify-between"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-            >
-              <h4 className="text-md font-semibold text-gray-800 mb-2 capitalize">
-                {repo.name.replace(/-/g, " ")}
-              </h4>
+                  {/* Content Body */}
+                  <div className="p-6">
+                    <span className="inline-block px-3 py-1 bg-[#B8E1DD]/30 text-[#044A42] text-xs font-bold rounded-md mb-3">
+                      {project.type}
+                    </span>
 
-              <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                {repo.description || "No description available."}
-              </p>
+                    <h4 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#3A9188] transition-colors">
+                      {project.name}
+                    </h4>
 
-              <div className="flex justify-between items-center">
-                <span className="text-xs text-gray-500">
-                  ⭐ {repo.stargazers_count}
-                </span>
+                    <p className="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
 
-                <a
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-[#062925] hover:text-[#3A9188]"
-                >
-                  <FaGithub /> View
-                </a>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-8 mb-16 text-center">
-          <a
-            href="https://github.com/dilanithathsarani?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#3A9188] text-white px-6 py-3 rounded-lg hover:bg-[#2e756e]"
-          >
-            <FaGithub />
-            View All Repositories
-          </a>
-        </div>
-
-        <h3 className="text-2xl font-semibold text-[#B8E1DD] mb-6 mt-8">
-          UI/UX Design Projects
-        </h3>
-
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {uiUxProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="bg-[#B8E1DD] rounded-xl shadow-md p-5 hover:shadow-xl transition flex flex-col justify-between"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <div>
-                <div className="mb-4">
-                  <img
-                    src={project.image[0]}
-                    alt={project.name}
-                    className="w-full h-48 object-cover rounded-lg shadow-sm"
-                  />
+                    {/* Tech Tag Pills */}
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {project.tags.map((tag, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-600"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">
-                  {project.name}
-                </h4>
-
-                <p className="text-sm text-gray-600 mb-4">
-                  {project.description}
-                </p>
-              </div>
-
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-[#062925] hover:text-[#3A9188] font-medium mt-auto"
-              >
-                <FaFigma className="w-5 h-5" /> View Design
-              </a>
-            </motion.div>
-          ))}
+                {/* Action Links */}
+                <div className="px-6 pb-6 pt-0 flex items-center justify-between border-t border-slate-200/60 mt-auto pt-4">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-bold text-slate-800 hover:text-[#3A9188] transition-colors"
+                    >
+                      <FaGithub className="text-lg" /> Code Repository
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
+
+        {/* --- UI/UX FIGMA PROJECTS SHOWCASE --- */}
+        <div>
+          <div className="flex items-center justify-between mb-8 pb-3 border-b border-slate-200">
+            <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <FaPalette className="text-pink-500" /> UI/UX Design Prototypes (Figma)
+            </h3>
+            <span className="text-xs font-semibold text-slate-500">
+              Crafted in Figma
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {uiUxProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                className="bg-slate-50 rounded-3xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div>
+                  {/* Figma Badge Bar */}
+                  <div className="bg-pink-50 border-b border-pink-100 px-4 py-2 flex items-center justify-between">
+                    <span className="text-xs font-bold text-pink-600 flex items-center gap-1.5">
+                      <FaFigma className="text-pink-500" /> Figma Design
+                    </span>
+                    <span className="text-[10px] bg-pink-200/60 text-pink-800 font-bold px-2 py-0.5 rounded">
+                      Interactive
+                    </span>
+                  </div>
+
+                  {/* Screenshot Banner */}
+                  <div className="relative overflow-hidden bg-slate-100 h-52 p-3">
+                    <img
+                      src={project.images[0]}
+                      alt={project.name}
+                      className="w-full h-full object-cover rounded-2xl shadow-sm group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <span className="inline-block px-3 py-1 bg-pink-100/60 text-pink-800 text-xs font-bold rounded-md mb-3">
+                      {project.type}
+                    </span>
+
+                    <h4 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-pink-600 transition-colors">
+                      {project.name}
+                    </h4>
+
+                    <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.tags.map((tag, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-600"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Figma Link Button */}
+                <div className="px-6 pb-6 pt-0 mt-auto">
+                  <a
+                    href={project.figma}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-900 hover:bg-pink-600 text-white font-bold text-sm shadow-md transition-all duration-300"
+                  >
+                    <FaFigma className="text-base text-pink-400" /> Open Figma Prototype <FaExternalLinkAlt className="text-xs ml-1" />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
 }
+
+
+

@@ -1,65 +1,164 @@
-import { useState } from "react";
-import { FaHome, FaUser, FaCode, FaProjectDiagram, FaEnvelope, FaBars, FaTimes, FaCertificate } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { FaHome, FaUser, FaCode, FaProjectDiagram, FaEnvelope, FaBars, FaTimes, FaCertificate, FaPaperPlane } from "react-icons/fa";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-[#B8E1DD] via-[#3A9188] to-[#044A42] text-[#B8E1DD] shadow-lg z-50 overflow-x-hidden">
-      <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+    <nav 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? "bg-white/90 backdrop-blur-md shadow-sm py-3 border-b border-slate-200/60" 
+          : "bg-white/70 backdrop-blur-sm py-4"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
         
-        <h1 className="text-2xl font-bold text-[#062925]">
-          Dilani Thathsarani
-        </h1>
+        {/* Logo */}
+        <a href="#home" className="flex items-center gap-2 group">
+          
+          <span className="text-xl font-bold tracking-tight text-[#062925]">
+            Dilani Thathsarani
+          </span>
+        </a>
 
-        <ul className="hidden md:flex space-x-8 font-medium">
-          <li className="flex items-center gap-2 hover:text-white cursor-pointer transition">
-            <FaHome /> <a href="#home">Home</a>
+        {/* Desktop Nav Links */}
+        <ul className="hidden md:flex items-center space-x-7 text-sm font-semibold text-slate-600">
+          <li>
+            <a href="#home" className="hover:text-[#3A9188] transition-colors flex items-center gap-1.5 py-1">
+              <FaHome className="text-xs text-[#3A9188]" /> Home
+            </a>
           </li>
-          <li className="flex items-center gap-2 hover:text-white cursor-pointer transition">
-            <FaUser /> <a href="#about">About</a>
+          <li>
+            <a href="#about" className="hover:text-[#3A9188] transition-colors flex items-center gap-1.5 py-1">
+              <FaUser className="text-xs text-[#3A9188]" /> About
+            </a>
           </li>
-          <li className="flex items-center gap-2 hover:text-white cursor-pointer transition">
-            <FaCertificate /> <a href="#certificates">Certificates</a>
+          <li>
+            <a href="#skills" className="hover:text-[#3A9188] transition-colors flex items-center gap-1.5 py-1">
+              <FaCode className="text-xs text-[#3A9188]" /> Skills & Tools
+            </a>
           </li>
-          <li className="flex items-center gap-2 hover:text-white cursor-pointer transition">
-            <FaCode /> <a href="#skills">Skills</a>
+          <li>
+            <a href="#projects" className="hover:text-[#3A9188] transition-colors flex items-center gap-1.5 py-1">
+              <FaProjectDiagram className="text-xs text-[#3A9188]" /> Projects
+            </a>
           </li>
-          <li className="flex items-center gap-2 hover:text-white cursor-pointer transition">
-            <FaProjectDiagram /> <a href="#projects">Projects</a>
+          <li>
+            <a href="#certificates" className="hover:text-[#3A9188] transition-colors flex items-center gap-1.5 py-1">
+              <FaCertificate className="text-xs text-[#3A9188]" /> Certificates
+            </a>
           </li>
-          <li className="flex items-center gap-2 hover:text-white cursor-pointer transition">
-            <FaEnvelope /> <a href="#contact">Contact</a>
+          <li>
+            <a href="#contact" className="hover:text-[#3A9188] transition-colors flex items-center gap-1.5 py-1">
+              <FaEnvelope className="text-xs text-[#3A9188]" /> Contact
+            </a>
           </li>
         </ul>
 
-        <button className="md:hidden text-2xl text-[#062925]" onClick={() => setOpen(!open)}>
-          {open ? <FaTimes /> : <FaBars />}
-        </button>
+        {/* Hire Me CTA Button & Mobile Toggle */}
+        <div className="flex items-center gap-4">
+          <a
+            href="#contact"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#044A42] to-[#3A9188] hover:from-[#062925] hover:to-[#044A42] text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5"
+          >
+            <FaPaperPlane className="text-xs" /> Hire Me
+          </a>
+
+          <button 
+            className="md:hidden text-2xl text-[#062925] p-1.5 focus:outline-none" 
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle Navigation Menu"
+          >
+            {open ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
       </div>
 
+      {/* Mobile Dropdown */}
       {open && (
-        <ul className="md:hidden flex flex-col items-center bg-gradient-to-b from-[#B8E1DD] via-[#3A9188] to-[#044A42] space-y-6 py-6 font-medium text-[#062925]">
-          <li className="flex items-center gap-2 hover:text-white">
-            <FaHome /> <a href="#home" onClick={() => setOpen(false)}>Home</a>
-          </li>
-          <li className="flex items-center gap-2 hover:text-white">
-            <FaUser /> <a href="#about" onClick={() => setOpen(false)}>About</a>
-          </li>
-          <li className="flex items-center gap-2 hover:text-white">
-            <FaCertificate /> <a href="#certificates" onClick={() => setOpen(false)}>Certificates</a>
-          </li>
-          <li className="flex items-center gap-2 hover:text-white">
-            <FaCode /> <a href="#skills" onClick={() => setOpen(false)}>Skills</a>
-          </li>
-          <li className="flex items-center gap-2 hover:text-white">
-            <FaProjectDiagram /> <a href="#projects" onClick={() => setOpen(false)}>Projects</a>
-          </li>
-          <li className="flex items-center gap-2 hover:text-white">
-            <FaEnvelope /> <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
-          </li>
-        </ul>
+        <div className="md:hidden bg-white/95 backdrop-blur-xl border-b border-slate-200 px-6 py-6 shadow-xl animate-fadeIn">
+          <ul className="flex flex-col space-y-4 font-semibold text-slate-700 text-base">
+            <li>
+              <a 
+                href="#home" 
+                onClick={() => setOpen(false)} 
+                className="flex items-center gap-3 py-2 border-b border-slate-100 hover:text-[#3A9188]"
+              >
+                <FaHome className="text-[#3A9188]" /> Home
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#about" 
+                onClick={() => setOpen(false)} 
+                className="flex items-center gap-3 py-2 border-b border-slate-100 hover:text-[#3A9188]"
+              >
+                <FaUser className="text-[#3A9188]" /> About
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#skills" 
+                onClick={() => setOpen(false)} 
+                className="flex items-center gap-3 py-2 border-b border-slate-100 hover:text-[#3A9188]"
+              >
+                <FaCode className="text-[#3A9188]" /> Skills & Tools
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#projects" 
+                onClick={() => setOpen(false)} 
+                className="flex items-center gap-3 py-2 border-b border-slate-100 hover:text-[#3A9188]"
+              >
+                <FaProjectDiagram className="text-[#3A9188]" /> Projects
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#certificates" 
+                onClick={() => setOpen(false)} 
+                className="flex items-center gap-3 py-2 border-b border-slate-100 hover:text-[#3A9188]"
+              >
+                <FaCertificate className="text-[#3A9188]" /> Certificates
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#contact" 
+                onClick={() => setOpen(false)} 
+                className="flex items-center gap-3 py-2 border-b border-slate-100 hover:text-[#3A9188]"
+              >
+                <FaEnvelope className="text-[#3A9188]" /> Contact
+              </a>
+            </li>
+            <li className="pt-2">
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-[#044A42] to-[#3A9188] text-white font-bold text-center shadow-md"
+              >
+                <FaPaperPlane className="text-sm" /> Hire Me
+              </a>
+            </li>
+          </ul>
+        </div>
       )}
     </nav>
   );
 }
+
