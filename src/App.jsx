@@ -1,5 +1,6 @@
 import './App.css'
 import Navbar from './component/nav'
+import ScrollProgressBar from './component/ScrollProgressBar'
 import Home from './component/home'
 import About from './component/about'
 import Certificates from './component/certificates'
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <>
+    <ScrollProgressBar />
     <Navbar />
     <Home />
     <About />
