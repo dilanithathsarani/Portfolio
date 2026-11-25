@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaFigma, FaExternalLinkAlt, FaPalette, FaLaptopCode, FaMobileAlt, FaLayerGroup } from "react-icons/fa";
+import { FaGithub, FaFigma, FaExternalLinkAlt, FaPalette, FaLaptopCode, FaMobileAlt, FaLayerGroup, FaTimes, FaExpand, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import project1 from "../assets/1.png";
 import project2 from "../assets/2.png";
@@ -12,6 +12,7 @@ import project7 from "../assets/7.png";
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
 
   // Featured Web & Mobile Projects
   const webAndMobileProjects = [
@@ -109,6 +110,29 @@ export default function Projects() {
 
   const showDevSection = activeFilter === "all" || activeFilter === "web" || activeFilter === "mobile";
   const showUiUxSection = activeFilter === "all" || activeFilter === "uiux";
+
+  const visibleProjects = [
+    ...(showDevSection ? filteredDevProjects : []),
+    ...(showUiUxSection ? uiUxProjects : []),
+  ];
+
+  const selectedIndex = visibleProjects.findIndex((p) => p.id === selectedProjectId);
+  const selectedProject = selectedIndex >= 0 ? visibleProjects[selectedIndex] : null;
+
+  useEffect(() => {
+    if (!selectedProject) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setSelectedProjectId(null);
+      if (e.key === "ArrowRight" && visibleProjects.length > 1) {
+        setSelectedProjectId(visibleProjects[(selectedIndex + 1) % visibleProjects.length].id);
+      }
+      if (e.key === "ArrowLeft" && visibleProjects.length > 1) {
+        setSelectedProjectId(visibleProjects[(selectedIndex - 1 + visibleProjects.length) % visibleProjects.length].id);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedProject, selectedIndex, visibleProjects]);
 
   const filterTabs = [
     { id: "all", label: "All Projects", count: webAndMobileProjects.length + uiUxProjects.length, Icon: FaLayerGroup },
@@ -222,13 +246,21 @@ export default function Projects() {
                   </div>
 
                   {/* Single Main Image Screenshot */}
-                  <div className="relative overflow-hidden bg-page-muted h-52 sm:h-56 p-3">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProjectId(project.id)}
+                    aria-label={`Preview ${project.name}`}
+                    className="relative overflow-hidden bg-page-muted h-52 sm:h-56 p-3 w-full block text-left cursor-pointer group/img"
+                  >
                     <img
                       src={project.images[0]}
                       alt={project.name}
                       className="w-full h-full object-cover rounded-2xl shadow-sm group-hover:scale-105 transition-transform duration-500"
                     />
-                  </div>
+                    <span className="absolute bottom-5 right-5 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-sm text-white text-xs font-bold opacity-0 group-hover/img:opacity-100 transition-opacity">
+                      <FaExpand className="text-[10px]" /> Quick View
+                    </span>
+                  </button>
 
                   {/* Content Body */}
                   <div className="p-6">
@@ -319,13 +351,21 @@ export default function Projects() {
                       </div>
 
                       {/* Screenshot Banner */}
-                      <div className="relative overflow-hidden bg-page-muted h-52 p-3">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedProjectId(project.id)}
+                        aria-label={`Preview ${project.name}`}
+                        className="relative overflow-hidden bg-page-muted h-52 p-3 w-full block text-left cursor-pointer group/img"
+                      >
                         <img
                           src={project.images[0]}
                           alt={project.name}
                           className="w-full h-full object-cover rounded-2xl shadow-sm group-hover:scale-105 transition-transform duration-500"
                         />
-                      </div>
+                        <span className="absolute bottom-5 right-5 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-sm text-white text-xs font-bold opacity-0 group-hover/img:opacity-100 transition-opacity">
+                          <FaExpand className="text-[10px]" /> Quick View
+                        </span>
+                      </button>
 
                       {/* Content */}
                       <div className="p-6">
@@ -373,6 +413,130 @@ export default function Projects() {
         </AnimatePresence>
 
       </div>
+
+      {/* Project Lightbox Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProjectId(null)}
+            className="fixed inset-0 z-[100] bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
+          >
+            <motion.div
+              key={selectedProject.id}
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 12 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-card border border-line rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden text-left"
+            >
+              {/* Top Bar */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-line bg-page-muted">
+                <span className="px-3 py-1 rounded-md bg-accent-soft/30 text-accent-strong dark:text-accent text-xs font-bold">
+                  {selectedProject.type}
+                </span>
+                <div className="flex items-center gap-2">
+                  {visibleProjects.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setSelectedProjectId(
+                            visibleProjects[(selectedIndex - 1 + visibleProjects.length) % visibleProjects.length].id
+                          )
+                        }
+                        aria-label="Previous project"
+                        className="p-2 rounded-lg border border-line bg-card text-ink-muted hover:text-ink hover:border-accent transition-colors cursor-pointer"
+                      >
+                        <FaChevronLeft className="text-xs" />
+                      </button>
+                      <span className="text-xs font-semibold text-ink-muted px-1">
+                        {selectedIndex + 1} / {visibleProjects.length}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setSelectedProjectId(
+                            visibleProjects[(selectedIndex + 1) % visibleProjects.length].id
+                          )
+                        }
+                        aria-label="Next project"
+                        className="p-2 rounded-lg border border-line bg-card text-ink-muted hover:text-ink hover:border-accent transition-colors cursor-pointer"
+                      >
+                        <FaChevronRight className="text-xs" />
+                      </button>
+                    </>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProjectId(null)}
+                    aria-label="Close lightbox"
+                    className="p-2 rounded-lg text-ink-muted hover:text-ink hover:bg-card transition-colors cursor-pointer ml-1"
+                  >
+                    <FaTimes />
+                  </button>
+                </div>
+              </div>
+
+              {/* Preview Image */}
+              <div className="bg-page-muted p-4 sm:p-6 flex items-center justify-center max-h-[55vh] overflow-hidden">
+                <img
+                  src={selectedProject.images[0]}
+                  alt={selectedProject.name}
+                  className="max-h-[48vh] w-auto object-contain rounded-2xl shadow-md"
+                />
+              </div>
+
+              {/* Project Details */}
+              <div className="p-6 sm:p-7">
+                <h3 className="text-2xl font-extrabold text-ink mb-2">
+                  {selectedProject.name}
+                </h3>
+                <p className="text-ink-muted text-sm sm:text-base leading-relaxed mb-5">
+                  {selectedProject.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {selectedProject.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 bg-page-muted border border-line rounded-lg text-xs font-semibold text-ink-muted"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-line">
+                  {selectedProject.github && (
+                    <a
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent-strong hover:bg-[#062925] text-white font-bold text-sm shadow-sm transition-colors"
+                    >
+                      <FaGithub className="text-base" /> Code Repository
+                    </a>
+                  )}
+                  {selectedProject.figma && (
+                    <a
+                      href={selectedProject.figma}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-pink-600 text-white font-bold text-sm shadow-sm transition-colors"
+                    >
+                      <FaFigma className="text-base text-pink-400" /> Open Figma Prototype <FaExternalLinkAlt className="text-xs" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
