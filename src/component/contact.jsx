@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaWhatsapp, FaEnvelope, FaPaperPlane, FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
+import { FaLinkedin, FaWhatsapp, FaEnvelope, FaPaperPlane, FaMapMarkerAlt, FaCheckCircle, FaExclamationCircle, FaSpinner } from "react-icons/fa";
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle"); // "idle" | "sending" | "success" | "error"
+  const [statusMessage, setStatusMessage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -11,14 +13,52 @@ export default function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.message) {
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        setFormData({ name: "", email: "", service: "Full-Stack Web Development", message: "" });
-      }, 5000);
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    // Fallback to mailto if EmailJS credentials are not configured yet
+    if (!serviceId || !templateId || !publicKey) {
+      const subject = encodeURIComponent(`[Portfolio Inquiry] ${formData.service} - ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
+      );
+      window.location.href = `mailto:dilanithathsarani2003@gmail.com?subject=${subject}&body=${body}`;
+      setStatus("success");
+      setStatusMessage("Opened your email client to send the message directly.");
+      setFormData({ name: "", email: "", service: "Full-Stack Web Development", message: "" });
+      return;
+    }
+
+    setStatus("sending");
+    setStatusMessage("");
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          service: formData.service,
+          message: formData.message,
+          to_name: "Dilani Thathsarani",
+        },
+        publicKey
+      );
+      setStatus("success");
+      setStatusMessage("Thank you! Your message has been sent successfully. I will get back to you soon.");
+      setFormData({ name: "", email: "", service: "Full-Stack Web Development", message: "" });
+      setTimeout(() => setStatus("idle"), 6000);
+    } catch (err) {
+      setStatus("error");
+      setStatusMessage(
+        err?.text || "Failed to send message. Please try again or reach out via WhatsApp / Email."
+      );
     }
   };
 
@@ -134,10 +174,17 @@ export default function Contact() {
                 <p className="text-ink-muted text-xs mt-1">Fill out the details below and I'll get back to you promptly.</p>
               </div>
 
-              {submitted && (
+              {status === "success" && (
                 <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-sm font-semibold flex items-center gap-2">
-                  <FaCheckCircle className="text-emerald-600 dark:text-emerald-400 text-lg" />
-                  Thank you! Your message has been sent successfully. I will get back to you soon.
+                  <FaCheckCircle className="text-emerald-600 dark:text-emerald-400 text-lg shrink-0" />
+                  <span>{statusMessage}</span>
+                </div>
+              )}
+
+              {status === "error" && (
+                <div className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300 text-sm font-semibold flex items-center gap-2">
+                  <FaExclamationCircle className="text-rose-600 dark:text-rose-400 text-lg shrink-0" />
+                  <span>{statusMessage}</span>
                 </div>
               )}
 
@@ -205,9 +252,18 @@ export default function Contact() {
 
               <button 
                 type="submit"
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-accent-strong to-accent hover:from-[#062925] hover:to-accent-strong text-white font-bold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 mt-2"
+                disabled={status === "sending"}
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-accent-strong to-accent hover:from-[#062925] hover:to-accent-strong disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 mt-2 cursor-pointer"
               >
-                <FaPaperPlane className="text-sm" /> Send Hire Request
+                {status === "sending" ? (
+                  <>
+                    <FaSpinner className="text-sm animate-spin" /> Sending...
+                  </>
+                ) : (
+                  <>
+                    <FaPaperPlane className="text-sm" /> Send Hire Request
+                  </>
+                )}
               </button>
             </form>
           </motion.div>
