@@ -8,6 +8,7 @@ import Certificates from './component/certificates'
 import Footer from './component/footer'
 import Skills from './component/skills'
 import Projects from './component/projects'
+import Achievements from './component/Achievements'
 import Contact from './component/contact'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <Certificates />
     <Skills />
     <Projects />
+    <Achievements />
     <Contact />
     <Footer />
     </>

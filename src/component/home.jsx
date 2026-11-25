@@ -109,15 +109,15 @@ export default function Home() {
 
           {/* Highlights Row */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-line max-w-xl">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-accent-soft/30 text-accent-strong">
+            <a href="#achievements" className="flex items-center gap-3 group hover:opacity-90 transition-opacity">
+              <div className="p-2.5 rounded-xl bg-accent-soft/30 text-accent-strong group-hover:bg-accent group-hover:text-white transition-colors">
                 <FaTrophy className="text-xl" />
               </div>
               <div className="text-left">
                 <p className="text-xl font-extrabold text-ink leading-none">7+</p>
                 <p className="text-xs text-ink-muted font-medium mt-0.5">Hackathons</p>
               </div>
-            </div>
+            </a>
 
             <div className="flex items-center gap-3">
               <div className="p-2.5 rounded-xl bg-accent-soft/30 text-accent-strong">

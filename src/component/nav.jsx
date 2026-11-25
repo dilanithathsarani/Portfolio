@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaHome, FaUser, FaCode, FaProjectDiagram, FaEnvelope, FaBars, FaTimes, FaCertificate, FaPaperPlane, FaMoon, FaSun, FaBriefcase } from "react-icons/fa";
+import { FaHome, FaUser, FaCode, FaProjectDiagram, FaEnvelope, FaBars, FaTimes, FaCertificate, FaPaperPlane, FaMoon, FaSun, FaBriefcase, FaTrophy } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 
 function ThemeToggle({ className = "" }) {
@@ -77,6 +77,11 @@ export default function Navbar() {
           <li>
             <a href="#projects" className="hover:text-accent transition-colors flex items-center gap-1.5 py-1">
               <FaProjectDiagram className="text-xs text-accent" /> Projects
+            </a>
+          </li>
+          <li>
+            <a href="#achievements" className="hover:text-accent transition-colors flex items-center gap-1.5 py-1">
+              <FaTrophy className="text-xs text-accent" /> Achievements
             </a>
           </li>
           <li>
@@ -158,6 +163,15 @@ export default function Navbar() {
                 className="flex items-center gap-3 py-2 border-b border-line hover:text-accent"
               >
                 <FaProjectDiagram className="text-accent" /> Projects
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#achievements" 
+                onClick={() => setOpen(false)} 
+                className="flex items-center gap-3 py-2 border-b border-line hover:text-accent"
+              >
+                <FaTrophy className="text-accent" /> Achievements
               </a>
             </li>
             <li>
