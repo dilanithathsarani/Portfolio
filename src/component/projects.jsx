@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { FaGithub, FaFigma, FaExternalLinkAlt, FaPalette, FaLaptopCode } from "react-icons/fa";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaGithub, FaFigma, FaExternalLinkAlt, FaPalette, FaLaptopCode, FaMobileAlt, FaLayerGroup } from "react-icons/fa";
 
 import project1 from "../assets/1.png";
 import project2 from "../assets/2.png";
@@ -10,6 +11,8 @@ import project6 from "../assets/6.png";
 import project7 from "../assets/7.png";
 
 export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState("all");
+
   // Featured Web & Mobile Projects
   const webAndMobileProjects = [
     {
@@ -99,12 +102,27 @@ export default function Projects() {
     },
   ];
 
+  const filteredDevProjects =
+    activeFilter === "all"
+      ? webAndMobileProjects
+      : webAndMobileProjects.filter((p) => p.category === activeFilter);
+
+  const showDevSection = activeFilter === "all" || activeFilter === "web" || activeFilter === "mobile";
+  const showUiUxSection = activeFilter === "all" || activeFilter === "uiux";
+
+  const filterTabs = [
+    { id: "all", label: "All Projects", count: webAndMobileProjects.length + uiUxProjects.length, Icon: FaLayerGroup },
+    { id: "web", label: "Web Apps", count: webAndMobileProjects.filter((p) => p.category === "web").length, Icon: FaLaptopCode },
+    { id: "mobile", label: "Mobile Apps", count: webAndMobileProjects.filter((p) => p.category === "mobile").length, Icon: FaMobileAlt },
+    { id: "uiux", label: "UI/UX Design", count: uiUxProjects.length, Icon: FaPalette },
+  ];
+
   return (
     <section id="projects" className="min-h-screen bg-page py-24 px-6 border-t border-line">
       <div className="max-w-7xl mx-auto">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="text-accent font-bold text-xs md:text-sm tracking-wider uppercase bg-accent-soft/30 px-3.5 py-1.5 rounded-full inline-block mb-3">
             Portfolio Showcase
           </span>
@@ -117,19 +135,73 @@ export default function Projects() {
           <div className="w-16 h-1 bg-accent mx-auto mt-4 rounded-full" />
         </div>
 
-        {/* --- WEB & MOBILE PROJECTS SHOWCASE --- */}
-        <div className="mb-20">
-          <div className="flex items-center justify-between mb-8 pb-3 border-b border-line">
-            <h3 className="text-xl font-bold text-ink flex items-center gap-2">
-              <FaLaptopCode className="text-accent" /> Web & Mobile Development
-            </h3>
-            <span className="text-xs font-semibold text-ink-muted">
-              Code Repositories
-            </span>
-          </div>
+        {/* Category Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-14" role="tablist" aria-label="Filter projects by category">
+          {filterTabs.map(({ id, label, count, Icon }) => {
+            const isActive = activeFilter === id;
+            return (
+              <button
+                key={id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActiveFilter(id)}
+                className={`relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-colors cursor-pointer ${
+                  isActive
+                    ? "text-white"
+                    : "bg-page-muted border border-line text-ink-muted hover:text-ink hover:border-accent/50"
+                }`}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="projectFilterPill"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-strong to-accent shadow-md"
+                  />
+                )}
+                <span className="relative z-10 inline-flex items-center gap-2">
+                  <Icon className="text-xs" />
+                  <span>{label}</span>
+                  <span
+                    className={`text-[11px] px-2 py-0.5 rounded-full ${
+                      isActive ? "bg-white/20 text-white" : "bg-card text-ink-muted border border-line"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {webAndMobileProjects.map((project, index) => (
+        {/* --- WEB & MOBILE PROJECTS SHOWCASE --- */}
+        <AnimatePresence mode="wait">
+          {showDevSection && (
+            <motion.div
+              key={`dev-${activeFilter}`}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
+              className={showUiUxSection ? "mb-20" : ""}
+            >
+              <div className="flex items-center justify-between mb-8 pb-3 border-b border-line">
+                <h3 className="text-xl font-bold text-ink flex items-center gap-2">
+                  <FaLaptopCode className="text-accent" />{" "}
+                  {activeFilter === "web"
+                    ? "Web Development"
+                    : activeFilter === "mobile"
+                    ? "Mobile Applications"
+                    : "Web & Mobile Development"}
+                </h3>
+                <span className="text-xs font-semibold text-ink-muted">
+                  Code Repositories
+                </span>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredDevProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 className="bg-page-muted rounded-3xl border border-line overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
@@ -201,92 +273,104 @@ export default function Projects() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* --- UI/UX FIGMA PROJECTS SHOWCASE --- */}
-        <div>
-          <div className="flex items-center justify-between mb-8 pb-3 border-b border-line">
-            <h3 className="text-xl font-bold text-ink flex items-center gap-2">
-              <FaPalette className="text-pink-500" /> UI/UX Design Prototypes (Figma)
-            </h3>
-            <span className="text-xs font-semibold text-ink-muted">
-              Crafted in Figma
-            </span>
-          </div>
+        <AnimatePresence mode="wait">
+          {showUiUxSection && (
+            <motion.div
+              key="uiux-section"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
+            >
+              <div className="flex items-center justify-between mb-8 pb-3 border-b border-line">
+                <h3 className="text-xl font-bold text-ink flex items-center gap-2">
+                  <FaPalette className="text-pink-500" /> UI/UX Design Prototypes (Figma)
+                </h3>
+                <span className="text-xs font-semibold text-ink-muted">
+                  Crafted in Figma
+                </span>
+              </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {uiUxProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                className="bg-page-muted rounded-3xl border border-line overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div>
-                  {/* Figma Badge Bar */}
-                  <div className="bg-pink-50 dark:bg-pink-950/40 border-b border-pink-100 dark:border-pink-900/50 px-4 py-2 flex items-center justify-between">
-                    <span className="text-xs font-bold text-pink-600 dark:text-pink-300 flex items-center gap-1.5">
-                      <FaFigma className="text-pink-500" /> Figma Design
-                    </span>
-                    <span className="text-[10px] bg-pink-200/60 dark:bg-pink-900/60 text-pink-800 dark:text-pink-200 font-bold px-2 py-0.5 rounded">
-                      Interactive
-                    </span>
-                  </div>
-
-                  {/* Screenshot Banner */}
-                  <div className="relative overflow-hidden bg-page-muted h-52 p-3">
-                    <img
-                      src={project.images[0]}
-                      alt={project.name}
-                      className="w-full h-full object-cover rounded-2xl shadow-sm group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <span className="inline-block px-3 py-1 bg-pink-100/60 dark:bg-pink-950/50 text-pink-800 dark:text-pink-200 text-xs font-bold rounded-md mb-3">
-                      {project.type}
-                    </span>
-
-                    <h4 className="text-xl font-bold text-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
-                      {project.name}
-                    </h4>
-
-                    <p className="text-ink-muted text-sm leading-relaxed mb-4">
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.tags.map((tag, tIdx) => (
-                        <span
-                          key={tIdx}
-                          className="px-2.5 py-1 bg-card border border-line rounded-lg text-xs font-semibold text-ink-muted"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Figma Link Button */}
-                <div className="px-6 pb-6 pt-0 mt-auto">
-                  <a
-                    href={project.figma}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-900 hover:bg-pink-600 text-white font-bold text-sm shadow-md transition-all duration-300"
+              <div className="grid md:grid-cols-3 gap-8">
+                {uiUxProjects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    className="bg-page-muted rounded-3xl border border-line overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <FaFigma className="text-base text-pink-400" /> Open Figma Prototype <FaExternalLinkAlt className="text-xs ml-1" />
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                    <div>
+                      {/* Figma Badge Bar */}
+                      <div className="bg-pink-50 dark:bg-pink-950/40 border-b border-pink-100 dark:border-pink-900/50 px-4 py-2 flex items-center justify-between">
+                        <span className="text-xs font-bold text-pink-600 dark:text-pink-300 flex items-center gap-1.5">
+                          <FaFigma className="text-pink-500" /> Figma Design
+                        </span>
+                        <span className="text-[10px] bg-pink-200/60 dark:bg-pink-900/60 text-pink-800 dark:text-pink-200 font-bold px-2 py-0.5 rounded">
+                          Interactive
+                        </span>
+                      </div>
+
+                      {/* Screenshot Banner */}
+                      <div className="relative overflow-hidden bg-page-muted h-52 p-3">
+                        <img
+                          src={project.images[0]}
+                          alt={project.name}
+                          className="w-full h-full object-cover rounded-2xl shadow-sm group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-6">
+                        <span className="inline-block px-3 py-1 bg-pink-100/60 dark:bg-pink-950/50 text-pink-800 dark:text-pink-200 text-xs font-bold rounded-md mb-3">
+                          {project.type}
+                        </span>
+
+                        <h4 className="text-xl font-bold text-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+                          {project.name}
+                        </h4>
+
+                        <p className="text-ink-muted text-sm leading-relaxed mb-4">
+                          {project.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {project.tags.map((tag, tIdx) => (
+                            <span
+                              key={tIdx}
+                              className="px-2.5 py-1 bg-card border border-line rounded-lg text-xs font-semibold text-ink-muted"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Figma Link Button */}
+                    <div className="px-6 pb-6 pt-0 mt-auto">
+                      <a
+                        href={project.figma}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-900 hover:bg-pink-600 text-white font-bold text-sm shadow-md transition-all duration-300"
+                      >
+                        <FaFigma className="text-base text-pink-400" /> Open Figma Prototype <FaExternalLinkAlt className="text-xs ml-1" />
+                      </a>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </section>
