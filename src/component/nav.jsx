@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaHome, FaUser, FaCode, FaProjectDiagram, FaEnvelope, FaBars, FaTimes, FaCertificate, FaPaperPlane, FaMoon, FaSun } from "react-icons/fa";
+import { FaHome, FaUser, FaCode, FaProjectDiagram, FaEnvelope, FaBars, FaTimes, FaCertificate, FaPaperPlane, FaMoon, FaSun, FaBriefcase } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 
 function ThemeToggle({ className = "" }) {
@@ -65,6 +65,11 @@ export default function Navbar() {
             </a>
           </li>
           <li>
+            <a href="#services" className="hover:text-accent transition-colors flex items-center gap-1.5 py-1">
+              <FaBriefcase className="text-xs text-accent" /> Services
+            </a>
+          </li>
+          <li>
             <a href="#skills" className="hover:text-accent transition-colors flex items-center gap-1.5 py-1">
               <FaCode className="text-xs text-accent" /> Skills & Tools
             </a>
@@ -126,6 +131,15 @@ export default function Navbar() {
                 className="flex items-center gap-3 py-2 border-b border-line hover:text-accent"
               >
                 <FaUser className="text-accent" /> About
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#services" 
+                onClick={() => setOpen(false)} 
+                className="flex items-center gap-3 py-2 border-b border-line hover:text-accent"
+              >
+                <FaBriefcase className="text-accent" /> Services
               </a>
             </li>
             <li>
