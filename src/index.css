@@ -1,29 +1,73 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #ffffff;
+  --bg-muted: #f8fafc;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --border: #e2e8f0;
+  --accent: #3a9188;
+  --accent-strong: #044a42;
+  --accent-soft: #b8e1dd;
+  --nav: rgba(255, 255, 255, 0.9);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #061412;
+  --bg-muted: #0a1c1a;
+  --surface: #0e2421;
+  --text: #eef6f4;
+  --text-muted: #9bb3ae;
+  --border: #1c3d38;
+  --accent: #5ec4b8;
+  --accent-strong: #3a9188;
+  --accent-soft: #143833;
+  --nav: rgba(6, 20, 18, 0.88);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-page: var(--bg);
+  --color-page-muted: var(--bg-muted);
+  --color-card: var(--surface);
+  --color-ink: var(--text);
+  --color-ink-muted: var(--text-muted);
+  --color-line: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
 
   body {
-    background-color: #ffffff;
-    color: #1e293b;
+    background-color: var(--bg);
+    color: var(--text);
     overflow-x: hidden;
   }
 }
 
-/* Custom subtle scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--bg-muted);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #3A9188;
+  background: var(--accent);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #044A42;
+  background: var(--accent-strong);
 }

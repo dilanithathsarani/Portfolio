@@ -100,30 +100,30 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="min-h-screen bg-white py-24 px-6 border-t border-slate-100">
+    <section id="projects" className="min-h-screen bg-page py-24 px-6 border-t border-line">
       <div className="max-w-7xl mx-auto">
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[#3A9188] font-bold text-xs md:text-sm tracking-wider uppercase bg-[#B8E1DD]/30 px-3.5 py-1.5 rounded-full inline-block mb-3">
+          <span className="text-accent font-bold text-xs md:text-sm tracking-wider uppercase bg-accent-soft/30 px-3.5 py-1.5 rounded-full inline-block mb-3">
             Portfolio Showcase
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-ink tracking-tight">
             Featured Projects & Designs
           </h2>
-          <p className="text-slate-600 text-base md:text-lg mt-3">
+          <p className="text-ink-muted text-base md:text-lg mt-3">
             Explore my work in Web Development, Mobile Applications, and Figma UI/UX Design prototypes.
           </p>
-          <div className="w-16 h-1 bg-[#3A9188] mx-auto mt-4 rounded-full" />
+          <div className="w-16 h-1 bg-accent mx-auto mt-4 rounded-full" />
         </div>
 
         {/* --- WEB & MOBILE PROJECTS SHOWCASE --- */}
         <div className="mb-20">
-          <div className="flex items-center justify-between mb-8 pb-3 border-b border-slate-200">
-            <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-              <FaLaptopCode className="text-[#3A9188]" /> Web & Mobile Development
+          <div className="flex items-center justify-between mb-8 pb-3 border-b border-line">
+            <h3 className="text-xl font-bold text-ink flex items-center gap-2">
+              <FaLaptopCode className="text-accent" /> Web & Mobile Development
             </h3>
-            <span className="text-xs font-semibold text-slate-500">
+            <span className="text-xs font-semibold text-ink-muted">
               Code Repositories
             </span>
           </div>
@@ -132,7 +132,7 @@ export default function Projects() {
             {webAndMobileProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="bg-slate-50 rounded-3xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                className="bg-page-muted rounded-3xl border border-line overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -140,17 +140,17 @@ export default function Projects() {
               >
                 <div>
                   {/* Browser Frame Window Header */}
-                  <div className="bg-slate-200/60 px-4 py-2 flex items-center gap-1.5 border-b border-slate-200">
+                  <div className="bg-line/60 px-4 py-2 flex items-center gap-1.5 border-b border-line">
                     <span className="w-2.5 h-2.5 rounded-full bg-rose-400 inline-block" />
                     <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block" />
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block" />
-                    <span className="text-[11px] font-mono text-slate-500 ml-2 truncate">
+                    <span className="text-[11px] font-mono text-ink-muted ml-2 truncate">
                       {project.name.toLowerCase().replace(/\s+/g, "-")}
                     </span>
                   </div>
 
                   {/* Single Main Image Screenshot */}
-                  <div className="relative overflow-hidden bg-slate-100 h-52 sm:h-56 p-3">
+                  <div className="relative overflow-hidden bg-page-muted h-52 sm:h-56 p-3">
                     <img
                       src={project.images[0]}
                       alt={project.name}
@@ -160,15 +160,15 @@ export default function Projects() {
 
                   {/* Content Body */}
                   <div className="p-6">
-                    <span className="inline-block px-3 py-1 bg-[#B8E1DD]/30 text-[#044A42] text-xs font-bold rounded-md mb-3">
+                    <span className="inline-block px-3 py-1 bg-accent-soft/30 text-accent-strong text-xs font-bold rounded-md mb-3">
                       {project.type}
                     </span>
 
-                    <h4 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#3A9188] transition-colors">
+                    <h4 className="text-xl font-bold text-ink mb-2 group-hover:text-accent transition-colors">
                       {project.name}
                     </h4>
 
-                    <p className="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                    <p className="text-ink-muted text-sm leading-relaxed mb-4 line-clamp-3">
                       {project.description}
                     </p>
 
@@ -177,7 +177,7 @@ export default function Projects() {
                       {project.tags.map((tag, tIdx) => (
                         <span
                           key={tIdx}
-                          className="px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-600"
+                          className="px-2.5 py-1 bg-card border border-line rounded-lg text-xs font-semibold text-ink-muted"
                         >
                           {tag}
                         </span>
@@ -187,13 +187,13 @@ export default function Projects() {
                 </div>
 
                 {/* Action Links */}
-                <div className="px-6 pb-6 pt-0 flex items-center justify-between border-t border-slate-200/60 mt-auto pt-4">
+                <div className="px-6 pb-6 pt-0 flex items-center justify-between border-t border-line mt-auto pt-4">
                   {project.github && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-bold text-slate-800 hover:text-[#3A9188] transition-colors"
+                      className="inline-flex items-center gap-2 text-sm font-bold text-ink hover:text-accent transition-colors"
                     >
                       <FaGithub className="text-lg" /> Code Repository
                     </a>
@@ -206,11 +206,11 @@ export default function Projects() {
 
         {/* --- UI/UX FIGMA PROJECTS SHOWCASE --- */}
         <div>
-          <div className="flex items-center justify-between mb-8 pb-3 border-b border-slate-200">
-            <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+          <div className="flex items-center justify-between mb-8 pb-3 border-b border-line">
+            <h3 className="text-xl font-bold text-ink flex items-center gap-2">
               <FaPalette className="text-pink-500" /> UI/UX Design Prototypes (Figma)
             </h3>
-            <span className="text-xs font-semibold text-slate-500">
+            <span className="text-xs font-semibold text-ink-muted">
               Crafted in Figma
             </span>
           </div>
@@ -219,7 +219,7 @@ export default function Projects() {
             {uiUxProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="bg-slate-50 rounded-3xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                className="bg-page-muted rounded-3xl border border-line overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -227,17 +227,17 @@ export default function Projects() {
               >
                 <div>
                   {/* Figma Badge Bar */}
-                  <div className="bg-pink-50 border-b border-pink-100 px-4 py-2 flex items-center justify-between">
-                    <span className="text-xs font-bold text-pink-600 flex items-center gap-1.5">
+                  <div className="bg-pink-50 dark:bg-pink-950/40 border-b border-pink-100 dark:border-pink-900/50 px-4 py-2 flex items-center justify-between">
+                    <span className="text-xs font-bold text-pink-600 dark:text-pink-300 flex items-center gap-1.5">
                       <FaFigma className="text-pink-500" /> Figma Design
                     </span>
-                    <span className="text-[10px] bg-pink-200/60 text-pink-800 font-bold px-2 py-0.5 rounded">
+                    <span className="text-[10px] bg-pink-200/60 dark:bg-pink-900/60 text-pink-800 dark:text-pink-200 font-bold px-2 py-0.5 rounded">
                       Interactive
                     </span>
                   </div>
 
                   {/* Screenshot Banner */}
-                  <div className="relative overflow-hidden bg-slate-100 h-52 p-3">
+                  <div className="relative overflow-hidden bg-page-muted h-52 p-3">
                     <img
                       src={project.images[0]}
                       alt={project.name}
@@ -247,15 +247,15 @@ export default function Projects() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <span className="inline-block px-3 py-1 bg-pink-100/60 text-pink-800 text-xs font-bold rounded-md mb-3">
+                    <span className="inline-block px-3 py-1 bg-pink-100/60 dark:bg-pink-950/50 text-pink-800 dark:text-pink-200 text-xs font-bold rounded-md mb-3">
                       {project.type}
                     </span>
 
-                    <h4 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-pink-600 transition-colors">
+                    <h4 className="text-xl font-bold text-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
                       {project.name}
                     </h4>
 
-                    <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                    <p className="text-ink-muted text-sm leading-relaxed mb-4">
                       {project.description}
                     </p>
 
@@ -263,7 +263,7 @@ export default function Projects() {
                       {project.tags.map((tag, tIdx) => (
                         <span
                           key={tIdx}
-                          className="px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-600"
+                          className="px-2.5 py-1 bg-card border border-line rounded-lg text-xs font-semibold text-ink-muted"
                         >
                           {tag}
                         </span>
@@ -292,6 +292,3 @@ export default function Projects() {
     </section>
   );
 }
-
-
-
